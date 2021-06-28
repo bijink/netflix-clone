@@ -1,5 +1,5 @@
 .banner {
-   background-image: url('https://wallpaperaccess.com/full/2703652.png');
+   /* background-image: url('https://wallpaperaccess.com/full/2703652.png'); */
    background-size: cover;
    height: 448px;
    color: white;
@@ -17,7 +17,8 @@
    padding-bottom: 0.3rem;
 }
 
-.banner_button {}
+.banner_button {
+}
 
 .button {
    color: white;
@@ -29,7 +30,7 @@
    padding-right: 2rem;
    padding-top: 0.5rem;
    padding-bottom: 0.5rem;
-   background-color: rgba(51, 51, 51, .5);
+   background-color: rgba(51, 51, 51, 0.5);
    cursor: pointer;
    margin-right: 1rem;
 }
@@ -50,5 +51,5 @@
 
 .fade_bottom {
    height: 7.4rem;
-   background-image: linear-gradient(180deg,transparent,rgba(37,37,37,.61),#111);
+   background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111);
 }
