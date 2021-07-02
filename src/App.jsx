@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import Banner from './Components/Banner/Banner';
 import NavBar from './Components/NavBar/NavBar';
+import Banner from './Components/Banner/Banner';
 import RowPost from './Components/RowPost/RowPost';
-import { origins, actions } from './Urls';
+import { trendings, origins, actions } from './Urls';
 
 function App() {
    return (
       <div>
          <NavBar />
-         <Banner />
+         <Banner url={trendings} />
          <RowPost title='Netfilx Origins' url={origins} />
          <RowPost title='Actions' url={actions} isSmall />
       </div>
