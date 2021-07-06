@@ -1,5 +1,9 @@
 import { API_KEY } from './Constants/Constants';
 
-export const trendings = `trending/all/week?api_key=${API_KEY}&language=en-US`;
-export const origins = `discover/tv?api_key=${API_KEY}&with_networks=213`;
-export const actions = `discover/movie?api_key=${API_KEY}&with_genres=28`;
+export const Trendings = `trending/all/week?api_key=${API_KEY}&language=en-US`;
+export const Origins = `discover/tv?api_key=${API_KEY}&with_networks=213`;
+export const Actions = `discover/movie?api_key=${API_KEY}&with_genres=28`;
+export const ComedyMovies = `discover/movie?api_key=${API_KEY}&with_genres=35`;
+export const HorrorMovies = `discover/movie?api_key=${API_KEY}&with_genres=27`;
+export const RomanceMovies = `discover/movie?api_key=${API_KEY}&with_genres=10749`;
+export const Documentaries = `discover/movie?api_key=${API_KEY}&with_genres=99`;

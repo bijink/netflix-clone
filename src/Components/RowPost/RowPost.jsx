@@ -3,6 +3,7 @@ import './RowPost.css';
 import axios from '../../Axios';
 import { imageUrl, API_KEY } from '../../Constants/Constants';
 import YouTube from 'react-youtube';
+import Footer from '../Footer/Footer';
 
 function RowPost(props) {
 
@@ -44,9 +45,11 @@ function RowPost(props) {
                ))
             }
          </div>
-         {
-            urlId && <YouTube videoId={urlId.key} opts={opts} />
-         }
+         <div className="video">
+            {
+               urlId && <YouTube videoId={urlId.key} opts={opts} />
+            }
+         </div>
       </div>
    );
 }

@@ -26,8 +26,8 @@ function Banner(props) {
                </div>
                <p className="description">{movie ? movie.overview : ''}</p>
             </div>
+            <div className="fade_bottom"></div>
          </div>
-         <div className="fade_bottom"></div>
       </div>
    );
 
