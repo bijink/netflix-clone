@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.css';
-import NavBar from './Components/NavBar/NavBar';
-import Banner from './Components/Banner/Banner';
-import RowPost from './Components/RowPost/RowPost';
-import Footer from './Components/Footer/Footer';
-import { Trendings, Origins, Actions, RomanceMovies, ComedyMovies, HorrorMovies, ActionMovies, Documentaries } from './Urls';
+import HomePage from './Pages/HomePage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import DetailsPage from './Pages/DetailsPage';
 
 function App() {
    return (
       <div>
-         <NavBar />
-         <Banner url={Trendings} />
-         <RowPost title='Netfilx Origins' url={Origins} />
-         <RowPost title='Action' url={Actions} isSmall />
-         <RowPost title='Romance' url={RomanceMovies} />
-         <RowPost title='Comedy' url={ComedyMovies} isSmall />
-         <RowPost title='Horror' url={HorrorMovies} />
-         <RowPost title='Documentary' url={Documentaries} isSmall />
-         <Footer />
+         <Router>
+            <Route exact path='/' >
+               <HomePage />
+            </Route>
+            <Route path='/detail' >
+               <DetailsPage />
+            </Route>
+         </Router>
       </div>
    );
 }
