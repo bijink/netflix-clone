@@ -11,11 +11,12 @@ const HomePage = () => {
          <NavBar />
          <Banner url={Trendings} />
          <RowPost title='Netfilx Origins' url={Origins} />
-         <RowPost title='Action' url={Actions} isSmall />
-         <RowPost title='Romance' url={RomanceMovies} />
-         <RowPost title='Comedy' url={ComedyMovies} isSmall />
-         <RowPost title='Horror' url={HorrorMovies} />
-         <RowPost title='Documentary' url={Documentaries} isSmall />
+         <RowPost title='Trendings' url={Trendings} isSmall />
+         <RowPost title='Action' url={Actions} />
+         <RowPost title='Romance' url={RomanceMovies} isSmall />
+         <RowPost title='Comedy' url={ComedyMovies} />
+         <RowPost title='Horror' url={HorrorMovies} isSmall />
+         <RowPost title='Documentary' url={Documentaries} />
          <Footer />
       </div>
    );

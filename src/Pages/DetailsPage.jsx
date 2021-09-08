@@ -8,7 +8,7 @@ const DetailsPage = () => {
       <div>
          <NavBar />
          <MovieDetails />
-         <Footer />
+         {/* <Footer /> */}
       </div>
    );
 };
