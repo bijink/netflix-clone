@@ -4,7 +4,6 @@ import { createContext } from 'react';
 export const MovieDetailsCC = createContext(null);
 
 const MovieDetailsContext = (props) => {
-
    const [details, setDetails] = useState([]);
 
    return (

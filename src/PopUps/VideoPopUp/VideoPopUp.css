@@ -1,0 +1,14 @@
+.parentVideoPopUp {
+   width: 95%;
+   height: 85vh;
+   background-color: rgba(0, 0, 0, 0.844);
+   position: absolute;
+   top: 7.5vh;
+   left: 2.5%;
+}
+.parentVideoPopUp h1 {
+   position: absolute;
+   right: 0;
+   top: 5rem;
+   cursor: pointer;
+}
