@@ -7,17 +7,24 @@
    padding: 10px;
    display: flex;
    justify-content: space-between;
-   /* background-color: #111; */
+   /* background-color: rgba(17, 17, 17, 0.98); */
+   transition: background-color 1000ms;
 }
 
 .logo {
-   position: fixed;
-   left: 20px;
+   /* position: fixed; */
+   /* left: 20px; */
    width: 80px;
+   height: 25px;
+   display: flex;
+   justify-content: center;
 }
 
 .avatar {
-   position: fixed;
-   right: 20px;
+   /* position: fixed; */
+   /* right: 20px; */
    width: 30px;
+   display: flex;
+   justify-content: center;
+   margin: 0 20px 0 0;
 }

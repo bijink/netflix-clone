@@ -41,8 +41,13 @@ const MovieDetails = () => {
             </div>
             <div className="movieDetails">
                <h1>{details.name || details.title}</h1>
-               <p>{details.release_date} </p>
-               <h1 onClick={handleVideo} className="Teaser" >{details.poster_path ? 'Teaser' : ''}</h1>
+               <br />
+               <p className="overview" >{details.overview && details.overview}</p>
+               <br />
+               <p>{details.release_date && `Release Date : ${details.release_date}`} </p>
+               <p>{details.vote_average && `Rating (average) : ${details.vote_average} / 10`} </p>
+               <br />
+               <h2 onClick={handleVideo} className="Teaser" ><i className={`${details.id && 'fab fa-youtube'}`}></i> {details.id && 'Teaser / Making'}</h2>
             </div>
          </div>
          {

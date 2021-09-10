@@ -13,6 +13,9 @@
 .parentDivMovieDetails .shadeDiv .movieDetails {
    margin: 7rem 0 0 0;
 }
+.parentDivMovieDetails .shadeDiv .movieDetails .overview {
+   padding: 0 8rem 0 0;
+}
 .parentDivMovieDetails .shadeDiv .sidePoster img {
    margin: 6rem 3rem;
    width: 20rem;
@@ -29,4 +32,16 @@
 }
 .Teaser {
    cursor: pointer;
+   font-size: medium;
+   font-weight: 500;
+   display: flex;
+   align-items: center;
+}
+.Teaser:hover {
+   color: rgb(196, 196, 196);
+}
+.Teaser i {
+   color: orangered;
+   font-size: x-large;
+   margin: 0 0.3rem 0 0;
 }

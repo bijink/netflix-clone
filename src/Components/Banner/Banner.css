@@ -20,7 +20,8 @@
    padding-bottom: 0.3rem;
 }
 
-.banner_button {
+.banner .video {
+   /* z-index: 1; */
 }
 
 .button {

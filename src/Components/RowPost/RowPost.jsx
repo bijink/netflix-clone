@@ -16,16 +16,16 @@ function RowPost(props) {
 
    useEffect(() => {
       axios.get(props.url).then(response => {
-         console.log(response.data);
+         // console.log(response.data);
          setMovies(response.data.results);
       });
    }, []);
 
    const handleVideo = (id) => {
-      console.log(id);
+      // console.log(id);
       axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
          if (response.data.length !== 0) {
-            console.log(response.data.results[0]);
+            // console.log(response.data.results[0]);
             setUrlId(response.data.results[0]);
          }
       });
