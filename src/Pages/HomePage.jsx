@@ -18,7 +18,7 @@ const HomePage = () => {
          <RowPost title='Romance' url={RomanceMovies} isSmall />
          <RowPost title='Comedy' url={ComedyMovies} />
          <RowPost title='Horror' url={HorrorMovies} isSmall />
-         <RowPost title='Documentary' url={Documentaries} />
+         {/* <RowPost title='Documentary' url={Documentaries} /> */}
          <Footer />
       </div>
    );

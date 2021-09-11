@@ -6,6 +6,8 @@ import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import YouTube from 'react-youtube';
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+// import YoutubeEmbed from '../../YoutubeEmbed';
 
 function Banner(props) {
 
@@ -19,15 +21,15 @@ function Banner(props) {
       // console.log(details.id);
       axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`).then(res => {
          if (res.data.length !== 0) {
-            console.log(res.data.results[0]);
+            // console.log(res.data.results[0].key);
             setVideoPopUpTrigger(true);
-            setUrlId(res.data.results[0]);
+            res.data.results[0] && setUrlId(res.data.results[0].key);
          }
       });
    };
 
    const opts = {
-      height: '390',
+      height: '510',
       width: '100%',
       playerVars: {
          autoplay: 1,
@@ -35,6 +37,7 @@ function Banner(props) {
    };
 
    useEffect(() => {
+      setVideoPopUpTrigger(false);
       axios.get(props.url).then((response) => {
          console.log(response.data);
          const index = Math.floor(Math.random() * response.data.results.length);
@@ -61,11 +64,12 @@ function Banner(props) {
             // <VideoPopUp shade={'rgba(0, 0, 0, 0.762)'} width={'100%'} top={'0'} left={'0'} height={'100vh'}>
             // <VideoPopUp shade={'rgba(0, 0, 0, 0'} width={'100%'} top={'0'} left={'0'} height={'100vh'}>
             <VideoPopUp shade={true}>
-               <div className="video">
+               {/* <div className="video">
                   {
                      urlId && <YouTube videoId={urlId.key} opts={opts} />
                   }
-               </div>
+               </div> */}
+               {urlId ? <YoutubeEmbed embedId={urlId} styles={true} /> : <h1 className="noVideo">Video is not available</h1>}
             </VideoPopUp>
          }
       </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 import './MovieDetails.css';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
@@ -6,6 +6,8 @@ import YouTube from 'react-youtube';
 import axios from '../../Axios';
 import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
+import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+// import YoutubeEmbed from '../../YoutubeEmbed';
 
 const MovieDetails = () => {
    const { details } = useContext(MovieDetailsCC);
@@ -13,6 +15,10 @@ const MovieDetails = () => {
    const [urlId, setUrlId] = useState();
    // console.log(urlId);
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
+
+   useEffect(() => {
+      setVideoPopUpTrigger(false);
+   }, []);
 
    const handleVideo = () => {
       console.log(details.id);
@@ -53,9 +59,10 @@ const MovieDetails = () => {
          {
             videoPopUpTrigger &&
             <VideoPopUp>
-               <div className="video">
+               {/* <div className="video">
                   {urlId && <YouTube videoId={urlId.key} opts={opts} />}
-               </div>
+               </div> */}
+               {urlId ? < YoutubeEmbed embedId={urlId.key} /> : <h1 className="noVideo">Video is not available</h1>}
             </VideoPopUp>
          }
       </div>

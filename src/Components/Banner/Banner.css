@@ -12,6 +12,7 @@
 .content {
    padding-top: 8rem;
    padding-left: 30px;
+   /* height: fit-content; */
 }
 
 .title {
@@ -20,8 +21,11 @@
    padding-bottom: 0.3rem;
 }
 
-.banner .video {
-   /* z-index: 1; */
+.banner .noVideo {
+   font-size: x-large;
+   font-weight: 300;
+   display: flex;
+   justify-content: center;
 }
 
 .button {
