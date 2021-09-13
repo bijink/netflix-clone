@@ -56,3 +56,18 @@
    font-size: x-large;
    margin: 0 0.3rem 0 0;
 }
+.videoBackbtn {
+   cursor: pointer;
+   font-size: 3vw;
+   position: absolute;
+   /* top: 40vh;   */
+   top: 50%;
+   left: -4vw;
+}
+.videoNextbtn {
+   cursor: pointer;
+   font-size: 3vw;
+   position: absolute;
+   top: 50%;
+   right: -4vw;
+}
