@@ -1,30 +1,35 @@
 .parentVideoPopUp {
    /* width: 95%; */
-   width: 90%;
-   height: 80vh;
+   width: 100%;
+   height: 100vh;
    /* background-color: rgb(255, 255, 255); */
    background-color: rgba(0, 0, 0, 0.782);
-   position: absolute;
-   /* position: fixed; */
-   top: 7.5vh;
-   left: 5%;
+   /* background-color: rgba(238, 20, 20, 0.782); */
+   /* position: absolute; */
+   position: fixed;
+   top: 0;
+   left: 0;
    z-index: 1;
 }
 .parentVideoPopUp .close {
    position: absolute;
    left: 50%;
    /* bottom: -3.5rem; */
-   bottom: -9vh;
+   bottom: 3vh;
 }
 .parentVideoPopUp .close i {
    cursor: pointer;
    /* font-size: 2.5rem; */
    font-size: 3vw;
    /* color: rgb(108, 108, 108); */
-   color: rgb(142, 142, 142);
+   /* color: rgb(142, 142, 142); */
+   color: rgba(255, 255, 255, 0.192);
    /* position: absolute; */
    position: relative;
    left: -50%;
+}
+.parentVideoPopUp .close i:hover {
+   color: #c00010;
 }
 .parentVideoPopUp_banner {
    width: 100%;
@@ -34,7 +39,7 @@
    position: fixed;
    top: 0;
    left: 0;
-   padding: 3rem 0 0 0;
+   /* padding: 3rem 0 0 0; */
    z-index: 1;
    /* overflow: hidden; */
 }
@@ -42,17 +47,22 @@
    position: absolute;
    left: 50%;
    /* bottom: 5rem; */
-   bottom: 10vh;
+   bottom: 3vh;
    /* bottom: -3.5rem; */
 }
 .parentVideoPopUp_banner .close i {
    cursor: pointer;
    /* font-size: 2.5rem; */
    font-size: 3vw;
-   color: rgb(142, 142, 142);
+   /* color: rgb(142, 142, 142); */
+   color: rgba(255, 255, 255, 0.192);
    position: relative;
    left: -50%;
    /* position:  static; */
    /* top: 3rem; */
    /* right: 1.8rem; */
+}
+.parentVideoPopUp_banner .close i:hover {
+   /* color: rgb(255, 255, 255); */
+   color: #c00010;
 }

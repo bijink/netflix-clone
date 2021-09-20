@@ -6,17 +6,19 @@
 }
 
 .video-responsive iframe {
-   /* left:5%; */
-   /* top: 10%; */
-   height: 100%;
-   width: 100%;
+   left: 5%;
+   /* top: 10vh; */
+   top: 7.5vh;
+   height: 80vh;
+   width: 90%;
    position: absolute;
 }
 
 .video-responsive_banner iframe {
-   left: 2.5%;
-   top: 10%;
-   height: 70%;
-   width: 100%;
+   left: 5%;
+   /* top: 10%; */
+   top: 7.5vh;
+   height: 80vh;
+   width: 90%;
    position: absolute;
 }

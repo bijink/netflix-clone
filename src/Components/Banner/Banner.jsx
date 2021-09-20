@@ -15,25 +15,39 @@ function Banner(props) {
    // const { details } = useContext(MovieDetailsCC);
    const [urlId, setUrlId] = useState();
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
+   var [count, setCount] = useState(0);
+   const [lg, setLg] = useState();
 
-
-   const handleVideo = () => {
+   const handleVideo = (backNext) => {
       // console.log(details.id);
-      axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`).then(res => {
-         if (res.data.length !== 0) {
-            // console.log(res.data.results[0].key);
+      if (!videoPopUpTrigger) {
+         setCount(count = 0);
+      } else {
+         if (backNext === 'back') {
+            if (count == 0)
+               setCount(count = (lg - 1));
+            else
+               setCount(count -= 1);
+         } else if (backNext === 'next') {
+            if (count < (lg - 1))
+               setCount(count += 1);
+            else
+               setCount(count = 0);
+         }
+      }
+      axios.get(`/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
+         // console.log(response);
+         // console.log(response.data);
+         if (response.data.results.length !== 0) {
+            console.log(response.data);
             setVideoPopUpTrigger(true);
-            res.data.results[0] && setUrlId(res.data.results[0].key);
+            // response.data.results[0] && setUrlId(response.data.results[0].key);
+            setUrlId(response.data.results[count]);
+            setLg(response.data.results.length);
+         } else {
+            alert('Sorry, There is no video available');
          }
       });
-   };
-
-   const opts = {
-      height: '510',
-      width: '100%',
-      playerVars: {
-         autoplay: 1,
-      },
    };
 
    useEffect(() => {
@@ -43,6 +57,7 @@ function Banner(props) {
          const index = Math.floor(Math.random() * response.data.results.length);
          console.log(response.data.results[index]);
          setMovie(response.data.results[index]);
+         // setMovie(response.data.results[12]);
       });
    }, []);
 
@@ -61,15 +76,15 @@ function Banner(props) {
          </div>
          {
             videoPopUpTrigger &&
-            // <VideoPopUp shade={'rgba(0, 0, 0, 0.762)'} width={'100%'} top={'0'} left={'0'} height={'100vh'}>
-            // <VideoPopUp shade={'rgba(0, 0, 0, 0'} width={'100%'} top={'0'} left={'0'} height={'100vh'}>
-            <VideoPopUp shade={true}>
+            <VideoPopUp shade={true} history={true}>
                {/* <div className="video">
                   {
                      urlId && <YouTube videoId={urlId.key} opts={opts} />
                   }
                </div> */}
-               {urlId ? <YoutubeEmbed embedId={urlId} styles={true} /> : <h1 className="noVideo">Video is not available</h1>}
+               {urlId ? <YoutubeEmbed embedId={urlId.key} styles={true} /> : <h1 className="noVideo">This video is unavailable.</h1>}
+               {(urlId && !(count == 0)) && <i className="videoBtn videoBackbtn_b fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
+               {(urlId && !(count == (lg - 1))) && < i className="videoBtn videoNextbtn_b fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
       </div>

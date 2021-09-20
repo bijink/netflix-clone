@@ -7,6 +7,7 @@ import axios from '../../Axios';
 import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
+import { useHistory } from 'react-router';
 
 const MovieDetails = () => {
    const { details } = useContext(MovieDetailsCC);
@@ -18,40 +19,46 @@ const MovieDetails = () => {
    const [lg, setLg] = useState();
    // console.log(count);
    // console.log(videoNext_Back);
+   const history = useHistory();
+
 
    useEffect(() => {
       setVideoPopUpTrigger(false);
+      // history.push('/details');
       return () => {
       };
    }, []);
 
-
-
-   const handleVideo = (aa) => {
-      if (aa === 'back') {
-         if (count == 0)
-            setCount(count = (lg - 1));
-         else
-            setCount(count -= 1);
-      } else if (aa === 'next') {
-         if (count < (lg - 1))
-            setCount(count += 1);
-         else
-            setCount(count = 0);
+   const handleVideo = (backNext) => {
+      if (!videoPopUpTrigger) {
+         setCount(count = 0);
+      } else {
+         if (backNext === 'back') {
+            if (count == 0)
+               setCount(count = (lg - 1));
+            else
+               setCount(count -= 1);
+         } else if (backNext === 'next') {
+            if (count < (lg - 1))
+               setCount(count += 1);
+            else
+               setCount(count = 0);
+         }
       }
       // console.log(details.id);
-      axios.get(`/movie/${details.id}/videos?api_key=${API_KEY}&language=en-US`).then(res => {
-         if (res.data.length !== 0) {
-            // console.log(res.data.results[0]);
-            // console.log(res.data.results);
+      axios.get(`/movie/${details.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
+         // if (response.data.length !== 0) {
+         if (response.data.results.length !== 0) {
+            // console.log(response.data.results[0]);
+            // console.log(response.data.results);
             setVideoPopUpTrigger(true);
-            setUrlId(res.data.results[count]);
-            setLg(res.data.results.length);
+            setUrlId(response.data.results[count]);
+            setLg(response.data.results.length);
+         } else {
+            alert('Sorry, There is no video available');
          }
       });
    };
-
-
 
    return (
       <div className="parentDivMovieDetails" style={{ backgroundImage: `url(${details && (imageUrl + details.backdrop_path)})` }}>
@@ -77,14 +84,14 @@ const MovieDetails = () => {
                {/* <div className="video">
                   {urlId && <YouTube videoId={urlId.key} opts={opts} />}
                </div> */}
-               {urlId ? < YoutubeEmbed embedId={urlId.key} /> : <h1 className="noVideo">Video is not available</h1>}
-               <i className="videoBackbtn fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>
-               <i className="videoNextbtn fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>
+               {urlId ? < YoutubeEmbed embedId={urlId.key} /> : <h1 className="noVideo">This video is unavailable.</h1>}
+               {(urlId && !(count == 0)) && <i className="videoBtn videoBackbtn fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
+               {(urlId && !(count == (lg - 1))) && < i className="videoBtn videoNextbtn fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
          {/* <button onClick={() => handleVideo('back')} >back</button>
          <button onClick={() => handleVideo('next')} >next</button> */}
-      </div>
+      </div >
    );
 };
 

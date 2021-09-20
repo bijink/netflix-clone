@@ -68,3 +68,26 @@
    height: 8rem;
    background-image: linear-gradient(180deg, transparent, #111);
 }
+
+.videoBtn {
+   font-size: 3vw;
+   /* color: rgba(142, 142, 142, 0.247); */
+   color: rgba(255, 255, 255, 0.192);
+   cursor: pointer;
+}
+.videoBtn:hover {
+   /* color: #ef0015; */
+   color: #c00010;
+}
+
+.videoBackbtn_b {
+   position: absolute;
+   /* top: 40vh;   */
+   top: 50%;
+   left: 1vw;
+}
+.videoNextbtn_b {
+   position: absolute;
+   top: 50%;
+   right: 1vw;
+}

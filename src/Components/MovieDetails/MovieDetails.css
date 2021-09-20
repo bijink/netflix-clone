@@ -42,11 +42,14 @@
    margin: 2.5% auto;
 }
 .Teaser {
+   /* width: fit-content; */
    cursor: pointer;
    font-size: medium;
    font-weight: 500;
-   display: flex;
+   display: inline-flex;
    align-items: center;
+   /* display: inline-block; */
+   margin: auto;
 }
 .Teaser:hover {
    color: rgb(196, 196, 196);
@@ -56,18 +59,28 @@
    font-size: x-large;
    margin: 0 0.3rem 0 0;
 }
+.videoBtn {
+   cursor: pointer;
+   font-size: 3vw;
+   color: rgba(255, 255, 255, 0.192);
+}
+.videoBtn:hover {
+   color: #c00010;
+}
 .videoBackbtn {
    cursor: pointer;
    font-size: 3vw;
    position: absolute;
    /* top: 40vh;   */
    top: 50%;
-   left: -4vw;
+   /* left: -4vw; */
+   left: 1vw;
 }
 .videoNextbtn {
    cursor: pointer;
    font-size: 3vw;
    position: absolute;
    top: 50%;
-   right: -4vw;
+   /* right: -4vw; */
+   right: 1vw;
 }
