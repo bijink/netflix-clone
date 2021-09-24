@@ -15,7 +15,7 @@ const VideoPopUp = (props) => {
          <div className="close">
             <i onClick={() => {
                setVideoPopUpTrigger(false);
-               if (props.history) {
+               if (props.historys) {
                   history.push('/');
                } else {
                   history.push('/');

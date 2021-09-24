@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 // import PropTypes from "prop-types";
 import './YoutubeEmbed.css';
 
 const YoutubeEmbed = (props) => {
+
    return (
       <div className={props.styles ? "video-responsive_banner" : "video-responsive"}>
          <iframe
