@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Banner from '../Components/Banner/Banner';
 import Footer from '../Components/Footer/Footer';
 import NavBar from '../Components/NavBar/NavBar';
 import RowPost from '../Components/RowPost/RowPost';
-import { Trendings, Origins, Actions, RomanceMovies, ComedyMovies, HorrorMovies, Documentaries } from '../Urls';
+import { Trendings, Origins, Actions, RomanceMovies, ComedyMovies, HorrorMovies } from '../Urls';
 
 const HomePage = () => {
 

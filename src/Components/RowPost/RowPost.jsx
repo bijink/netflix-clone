@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './RowPost.css';
 import axios from '../../Axios';
-import { imageUrl, API_KEY } from '../../Constants/Constants';
-import YouTube from 'react-youtube';
+import { imageUrl } from '../../Constants/Constants';
+// import YouTube from 'react-youtube';
 import { useHistory } from 'react-router-dom';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 // import YoutubeEmbed from '../../YoutubeEmbed';
@@ -11,7 +11,7 @@ function RowPost(props) {
 
    const [movies, setMovies] = useState([]);
    // const [urlId, setUrlId] = useState('');
-   const [urlId, setUrlId] = useState();
+   // const [urlId, setUrlId] = useState();
    const history = useHistory();
    const { setDetails } = useContext(MovieDetailsCC);
 
@@ -20,30 +20,30 @@ function RowPost(props) {
          // console.log(response.data);
          setMovies(response.data.results);
       });
-   }, []);
+   }, [props.url]);
 
-   const handleVideo = (id) => {
-      // console.log(id);
-      axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
-         if (response.data.length !== 0) {
-            // console.log(response.data.results[0]);
-            setUrlId(response.data.results[0]);
-         }
-      });
-   };
+   // const handleVideo = (id) => {
+   //    // console.log(id);
+   //    axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
+   //       if (response.data.length !== 0) {
+   //          // console.log(response.data.results[0]);
+   //          setUrlId(response.data.results[0]);
+   //       }
+   //    });
+   // };
 
    const handleMovieDetails = (data) => {
       setDetails(data);
       history.push('/details');
    };
 
-   const opts = {
-      height: '390',
-      width: '100%',
-      playerVars: {
-         autoplay: 1,
-      },
-   };
+   // const opts = {
+   //    height: '390',
+   //    width: '100%',
+   //    playerVars: {
+   //       autoplay: 1,
+   //    },
+   // };
 
    return (
       <div className="row">
@@ -56,11 +56,11 @@ function RowPost(props) {
                ))
             }
          </div>
-         <div className="video">
+         {/* <div className="video">
             {
                urlId && <YouTube videoId={urlId.key} opts={opts} />
             }
-         </div>
+         </div> */}
       </div>
    );
 }

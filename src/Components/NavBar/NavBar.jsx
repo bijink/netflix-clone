@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import './NavBar.css';
 
-function NavBar(props) {
+function NavBar() {
    const [color, setColor] = useState('');
    const history = useHistory();
 

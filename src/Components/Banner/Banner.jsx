@@ -24,7 +24,7 @@ function Banner(props) {
          setCount(count = 0);
       } else {
          if (backNext === 'back') {
-            if (count == 0)
+            if (count === 0)
                setCount(count = (lg - 1));
             else
                setCount(count -= 1);
@@ -64,7 +64,7 @@ function Banner(props) {
          setMovie(response.data.results[index]);
          // setMovie(response.data.results[12]);
       });
-   }, []);
+   }, [props.url, setVideoPopUpTrigger]);
 
    return (
       <div className="banner" style={{ backgroundImage: `url(${movie ? imageUrl + movie.backdrop_path : ''})` }}>
@@ -85,8 +85,8 @@ function Banner(props) {
             <VideoPopUp shade={true} historys={true} >
                {urlId ? <YoutubeEmbed embedId={urlId.key} styles={true} /> : <h1 className="noVideo">This video is unavailable.</h1>}
 
-               {(urlId && !(count == 0)) && <i className="videoBtn videoBackbtn_b fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
-               {(urlId && !(count == (lg - 1))) && < i className="videoBtn videoNextbtn_b fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
+               {(urlId && !(count === 0)) && <i className="videoBtn videoBackbtn_b fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
+               {(urlId && !(count === (lg - 1))) && < i className="videoBtn videoNextbtn_b fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
       </div>

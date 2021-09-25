@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 import './MovieDetails.css';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
-import YouTube from 'react-youtube';
+// import YouTube from 'react-youtube';
 import axios from '../../Axios';
 import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 const MovieDetails = () => {
    const { details } = useContext(MovieDetailsCC);
@@ -19,7 +19,7 @@ const MovieDetails = () => {
    const [lg, setLg] = useState();
    // console.log(count);
    // console.log(videoNext_Back);
-   const history = useHistory();
+   // const history = useHistory();
 
 
    useEffect(() => {
@@ -27,14 +27,14 @@ const MovieDetails = () => {
       // history.push('/details');
       return () => {
       };
-   }, []);
+   }, [setVideoPopUpTrigger]);
 
    const handleVideo = (backNext) => {
       if (!videoPopUpTrigger) {
          setCount(count = 0);
       } else {
          if (backNext === 'back') {
-            if (count == 0)
+            if (count === 0)
                setCount(count = (lg - 1));
             else
                setCount(count -= 1);
@@ -85,8 +85,8 @@ const MovieDetails = () => {
                   {urlId && <YouTube videoId={urlId.key} opts={opts} />}
                </div> */}
                {urlId ? < YoutubeEmbed embedId={urlId.key} /> : <h1 className="noVideo">This video is unavailable.</h1>}
-               {(urlId && !(count == 0)) && <i className="videoBtn videoBackbtn fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
-               {(urlId && !(count == (lg - 1))) && < i className="videoBtn videoNextbtn fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
+               {(urlId && !(count === 0)) && <i className="videoBtn videoBackbtn fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
+               {(urlId && !(count === (lg - 1))) && < i className="videoBtn videoNextbtn fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
          {/* <button onClick={() => handleVideo('back')} >back</button>
