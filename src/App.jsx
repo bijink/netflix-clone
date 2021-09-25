@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
-import HomePage from './Pages/HomePage';
+import './App.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import HomePage from './Pages/HomePage';
 import DetailsPage from './Pages/DetailsPage';
 
 function App() {

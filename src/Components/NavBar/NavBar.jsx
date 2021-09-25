@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import './NavBar.scss';
 import { useHistory } from 'react-router';
-import './NavBar.css';
 
 function NavBar() {
    const [color, setColor] = useState('');
+
    const history = useHistory();
 
    const listenScrollEvent = () => {

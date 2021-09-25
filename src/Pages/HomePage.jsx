@@ -6,8 +6,6 @@ import RowPost from '../Components/RowPost/RowPost';
 import { Trendings, Origins, Actions, RomanceMovies, ComedyMovies, HorrorMovies } from '../Urls';
 
 const HomePage = () => {
-
-
    return (
       <div>
          <NavBar />
@@ -18,7 +16,6 @@ const HomePage = () => {
          <RowPost title='Romance' url={RomanceMovies} isSmall />
          <RowPost title='Comedy' url={ComedyMovies} />
          <RowPost title='Horror' url={HorrorMovies} isSmall />
-         {/* <RowPost title='Documentary' url={Documentaries} /> */}
          <Footer />
       </div>
    );

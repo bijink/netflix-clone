@@ -1,21 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './Banner.css';
+import './Banner.scss';
 import axios from '../../Axios';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
-import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
+import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import { useHistory } from 'react-router';
 
 function Banner(props) {
    const [movie, setMovie] = useState();
-   // const { details } = useContext(MovieDetailsCC);
    const [urlId, setUrlId] = useState();
-   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
    var [count, setCount] = useState(0);
    const [lg, setLg] = useState();
+
+   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
    const { setDetails } = useContext(MovieDetailsCC);
+
    const history = useHistory();
 
    const handleVideo = (backNext) => {
@@ -41,7 +42,6 @@ function Banner(props) {
          if (response.data.results.length !== 0) {
             // console.log(response.data);
             setVideoPopUpTrigger(true);
-            // response.data.results[0] && setUrlId(response.data.results[0].key);
             setUrlId(response.data.results[count]);
             setLg(response.data.results.length);
          } else {
@@ -62,7 +62,6 @@ function Banner(props) {
          const index = Math.floor(Math.random() * response.data.results.length);
          // console.log(response.data.results[index]);
          setMovie(response.data.results[index]);
-         // setMovie(response.data.results[12]);
       });
    }, [props.url, setVideoPopUpTrigger]);
 
@@ -73,7 +72,6 @@ function Banner(props) {
                <h1 className="title">{movie ? movie.title || movie.name : ''}</h1>
                <div className="banner_button">
                   <button className="button" onClick={handleVideo}><i className="fas fa-play"></i> Play</button>
-                  {/* <button className="button">My List</button> */}
                   <button className="button" onClick={() => handleMovieDetails(movie)}><i className="fas fa-info-circle"></i> More Info</button>
                </div>
                <p className="description">{movie ? movie.overview : ''}</p>
@@ -84,14 +82,12 @@ function Banner(props) {
             videoPopUpTrigger &&
             <VideoPopUp shade={true} historys={true} >
                {urlId ? <YoutubeEmbed embedId={urlId.key} styles={true} /> : <h1 className="noVideo">This video is unavailable.</h1>}
-
                {(urlId && !(count === 0)) && <i className="videoBtn videoBackbtn_b fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
                {(urlId && !(count === (lg - 1))) && < i className="videoBtn videoNextbtn_b fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
       </div>
    );
-
 }
 
 export default Banner;

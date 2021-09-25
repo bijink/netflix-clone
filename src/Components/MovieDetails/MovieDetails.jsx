@@ -1,30 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
+import './MovieDetails.scss';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
-import './MovieDetails.css';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
-// import YouTube from 'react-youtube';
 import axios from '../../Axios';
 import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
-// import { useHistory } from 'react-router';
 
 const MovieDetails = () => {
-   const { details } = useContext(MovieDetailsCC);
-   // console.log(details);
    const [urlId, setUrlId] = useState();
    // console.log(urlId);
-   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
    var [count, setCount] = useState(0);
    const [lg, setLg] = useState();
    // console.log(count);
-   // console.log(videoNext_Back);
-   // const history = useHistory();
 
+   const { details } = useContext(MovieDetailsCC);
+   // console.log(details);
+   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
 
    useEffect(() => {
       setVideoPopUpTrigger(false);
-      // history.push('/details');
       return () => {
       };
    }, [setVideoPopUpTrigger]);
@@ -47,7 +42,6 @@ const MovieDetails = () => {
       }
       // console.log(details.id);
       axios.get(`/movie/${details.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
-         // if (response.data.length !== 0) {
          if (response.data.results.length !== 0) {
             // console.log(response.data.results[0]);
             // console.log(response.data.results);
@@ -75,22 +69,16 @@ const MovieDetails = () => {
                <p>{details.vote_average && `Rating (average) : ${details.vote_average} / 10`} </p>
                <br />
                <h2 onClick={() => handleVideo()} className="Teaser" ><i className={`${details.id && 'fab fa-youtube'}`}></i> {details.id && 'Teaser / Making'}</h2>
-               {/* <h2 onClick={() => aa} className="Teaser" ><i className={`${details.id && 'fab fa-youtube'}`}></i> {details.id && 'Teaser / Making'}</h2> */}
             </div>
          </div>
          {
             videoPopUpTrigger &&
             <VideoPopUp>
-               {/* <div className="video">
-                  {urlId && <YouTube videoId={urlId.key} opts={opts} />}
-               </div> */}
                {urlId ? < YoutubeEmbed embedId={urlId.key} /> : <h1 className="noVideo">This video is unavailable.</h1>}
                {(urlId && !(count === 0)) && <i className="videoBtn videoBackbtn fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
                {(urlId && !(count === (lg - 1))) && < i className="videoBtn videoNextbtn fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
             </VideoPopUp>
          }
-         {/* <button onClick={() => handleVideo('back')} >back</button>
-         <button onClick={() => handleVideo('next')} >next</button> */}
       </div >
    );
 };
