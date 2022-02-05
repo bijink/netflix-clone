@@ -1,4 +1,5 @@
-.video-responsive {
+.video-responsive,
+.video-responsive_banner {
    iframe {
       width: 90%;
       height: 80vh;
@@ -7,12 +8,26 @@
       left: 5%;
    }
 }
-.video-responsive_banner {
-   iframe {
-      width: 90%;
-      height: 80vh;
-      position: absolute;
-      top: 7.5vh;
-      left: 5%;
+
+@media screen and (max-width: 1000px) {
+   .video-responsive,
+   .video-responsive_banner {
+      iframe {
+         width: 80%;
+         height: 70vh;
+         left: 10%;
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .video-responsive,
+   .video-responsive_banner {
+      iframe {
+         width: 90%;
+         height: 40vh;
+         margin-top: 10vh;
+         left: 5%;
+      }
    }
 }

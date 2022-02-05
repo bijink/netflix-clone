@@ -50,21 +50,55 @@
       font-size: 3vw;
       color: rgba(255, 255, 255, 0.192);
       &:hover {
-         color: #c00010;
+         // color: #c00010;
+         color: rgba(255, 255, 255, 0.575);
       }
    }
-   .videoBackbtn {
-      cursor: pointer;
-      font-size: 3vw;
-      position: absolute;
-      top: 50%;
-      left: 1vw;
-   }
+   .videoBackbtn,
    .videoNextbtn {
       cursor: pointer;
       font-size: 3vw;
       position: absolute;
       top: 50%;
+   }
+   .videoBackbtn {
+      left: 1vw;
+   }
+   .videoNextbtn {
       right: 1vw;
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   .parentDivMovieDetails {
+      .videoBtn {
+         font-size: 5vw;
+      }
+      .videoBackbtn {
+         left: 2vw;
+      }
+      .videoNextbtn {
+         right: 2vw;
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .parentDivMovieDetails {
+      .videoBtn {
+         font-size: 10vw;
+      }
+      .videoBackbtn,
+      .videoNextbtn {
+         position: absolute;
+         top: auto;
+         bottom: 30vh;
+      }
+      .videoBackbtn {
+         left: 8vh;
+      }
+      .videoNextbtn {
+         right: 8vh;
+      }
    }
 }

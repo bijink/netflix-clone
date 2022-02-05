@@ -67,8 +67,10 @@ function Banner(props) {
 
    return (
       <div className="banner" style={{ backgroundImage: `url(${movie ? imageUrl + movie.backdrop_path : ''})` }}>
+         {/* <div className="banner" > */}
          <div className="fade_content">
             <div className="content">
+               <div className='flex_div' ></div>
                <h1 className="title">{movie ? movie.title || movie.name : ''}</h1>
                <div className="banner_button">
                   <button className="button" onClick={handleVideo}><i className="fas fa-play"></i> Play</button>
@@ -76,8 +78,8 @@ function Banner(props) {
                </div>
                <p className="description">{movie ? movie.overview : ''}</p>
             </div>
-            <div className="fade_bottom"></div>
          </div>
+         <div className="fade_bottom"></div>
          {
             videoPopUpTrigger &&
             <VideoPopUp shade={true} historys={true} >

@@ -1,7 +1,7 @@
-.parentVideoPopUp {
+.parentVideoPopUp,
+.parentVideoPopUp_banner {
    width: 100%;
    height: 100vh;
-   background-color: rgba(0, 0, 0, 0.782);
    position: fixed;
    top: 0;
    left: 0;
@@ -9,11 +9,12 @@
    .close {
       position: absolute;
       left: 50%;
-      bottom: 3vh;
+      bottom: 5vh;
       i {
          cursor: pointer;
          font-size: 3vw;
-         color: rgba(255, 255, 255, 0.192);
+         // color: rgba(255, 255, 255, 0.192);
+         color: rgba(255, 0, 0, 0.644);
          position: relative;
          left: -50%;
          &:hover {
@@ -22,26 +23,32 @@
       }
    }
 }
+.parentVideoPopUp {
+   background-color: rgba(0, 0, 0, 0.782);
+}
 .parentVideoPopUp_banner {
-   width: 100%;
-   height: 100vh;
    background-color: rgba(0, 0, 0, 0.932);
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 1;
-   .close {
-      position: absolute;
-      left: 50%;
-      bottom: 3vh;
-      i {
-         cursor: pointer;
-         font-size: 3vw;
-         color: rgba(255, 255, 255, 0.192);
-         position: relative;
-         left: -50%;
-         &:hover {
-            color: #c00010;
+}
+
+@media screen and (max-width: 1000px) {
+   .parentVideoPopUp,
+   .parentVideoPopUp_banner {
+      .close {
+         bottom: 12vh;
+         i {
+            font-size: 5vw;
+         }
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .parentVideoPopUp,
+   .parentVideoPopUp_banner {
+      .close {
+         bottom: 18vh;
+         i {
+            font-size: 12vw;
          }
       }
    }

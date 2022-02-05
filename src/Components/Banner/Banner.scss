@@ -1,17 +1,26 @@
 .banner {
    background-size: cover;
-   height: 38rem;
+   background-position-x: center;
+   $banner_height: 38rem;
+   height: $banner_height;
    color: white;
+   display: flex;
+   flex-direction: column;
    .fade_content {
       height: 100vh;
       background-image: linear-gradient(90deg, rgb(8, 8, 8), transparent, transparent);
       .content {
-         padding-top: 8rem;
+         padding-right: 30px;
          padding-left: 30px;
+         height: 30rem;
+         .flex_div {
+            display: none;
+         }
          .title {
             font-size: 3rem;
             font-weight: 800;
             padding-bottom: 0.3rem;
+            margin-top: 8rem;
          }
          .banner_button {
             .button {
@@ -37,7 +46,7 @@
             line-height: 1.3;
             margin-top: 1rem;
             font-size: 1rem;
-            height: 11.3rem;
+            height: 13rem;
             max-width: 360px;
             overflow-y: scroll;
             scrollbar-width: none;
@@ -46,13 +55,16 @@
             }
          }
       }
-      .fade_bottom {
-         margin-top: 4rem;
-         height: 8rem;
-         background-image: linear-gradient(180deg, transparent, rgb(8, 8, 8));
-      }
    }
-
+   .fade_bottom {
+      $fade_b_height: 8rem;
+      height: $fade_b_height;
+      width: 100%;
+      background-image: linear-gradient(180deg, transparent, rgb(8, 8, 8));
+      position: absolute;
+      // top: $banner_height - $fade_b_height;
+      top: $banner_height - $fade_b_height + 0.05rem;
+   }
    .noVideo {
       font-size: x-large;
       font-weight: 300;
@@ -64,17 +76,81 @@
       color: rgba(255, 255, 255, 0.192);
       cursor: pointer;
       &:hover {
-         color: #c00010;
+         // color: #c00010;
+         color: rgba(255, 255, 255, 0.575);
       }
    }
-   .videoBackbtn_b {
-      position: absolute;
-      top: 50%;
-      left: 1vw;
-   }
+   .videoBackbtn_b,
    .videoNextbtn_b {
       position: absolute;
       top: 50%;
+   }
+   .videoBackbtn_b {
+      left: 1vw;
+   }
+   .videoNextbtn_b {
       right: 1vw;
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   .banner {
+      $banner_height: 35rem;
+      height: $banner_height;
+      .fade_content {
+         .content {
+            height: 27rem;
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+            .flex_div {
+               display: block;
+               flex-grow: 1;
+            }
+            .title {
+               font-size: 2.5rem;
+            }
+            .banner_button {
+               margin-bottom: 2rem;
+            }
+            .description {
+               display: none;
+            }
+         }
+      }
+      .fade_bottom {
+         $fade_b_height: 8rem;
+         height: $fade_b_height;
+         top: $banner_height - $fade_b_height + 0.05rem;
+      }
+      .videoBtn {
+         font-size: 5vw;
+      }
+      .videoBackbtn_b {
+         left: 2vw;
+      }
+      .videoNextbtn_b {
+         right: 2vw;
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .banner {
+      .videoBtn {
+         font-size: 10vw;
+      }
+      .videoBackbtn_b,
+      .videoNextbtn_b {
+         position: absolute;
+         top: auto;
+         bottom: 30vh;
+      }
+      .videoBackbtn_b {
+         left: 8vh;
+      }
+      .videoNextbtn_b {
+         right: 8vh;
+      }
    }
 }

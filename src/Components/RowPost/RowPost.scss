@@ -13,10 +13,9 @@
       &::-webkit-scrollbar {
          display: none;
       }
-      .poster {
-         max-height: 220px;
+      .poster,
+      .smallPoster {
          margin-right: 10px;
-         border-radius: 1.2px;
          cursor: pointer;
          transition-duration: 400ms;
          &:first-child {
@@ -30,21 +29,36 @@
             transition-duration: 400ms;
          }
       }
+      .poster {
+         max-height: 220px;
+         border-radius: 1.2px;
+      }
       .smallPoster {
          max-height: 180px;
-         margin-right: 10px;
          border-radius: 1.5px;
-         cursor: pointer;
-         transition-duration: 400ms;
-         &:first-child {
-            margin-left: 30px;
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .row {
+      margin-left: 20px;
+      .posters {
+         margin-left: -20px;
+         .poster,
+         .smallPoster {
+            &:first-child {
+               margin-left: 20px;
+            }
+            &:last-child {
+               margin-right: 20px;
+            }
          }
-         &:last-child {
-            margin-right: 30px;
+         .poster {
+            max-height: 150px;
          }
-         &:hover {
-            transform: scale(1.1);
-            transition-duration: 400ms;
+         .smallPoster {
+            max-height: 120px;
          }
       }
    }
