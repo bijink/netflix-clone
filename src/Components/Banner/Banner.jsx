@@ -80,7 +80,7 @@ function Banner(props) {
                <p className="description">{movie ? movie.overview : ''}</p>
             </div>
          </div>
-         <div className="fade_bottom"></div>;
+         <div className="fade_bottom"></div>
          {
             videoPopUpTrigger &&
             // (urlId ? < VideoPopUp banner urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
