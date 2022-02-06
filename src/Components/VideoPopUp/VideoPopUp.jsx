@@ -9,6 +9,8 @@ const VideoPopUp = ({ banner, urlId, videoCount, videoLenght, handleVideo }) => 
 
    const history = useHistory();
 
+   // console.log(urlId);
+
    return (
       <>
          <div className={`videoBgShade_${banner ? 'banner' : 'movieDetails'}`}>

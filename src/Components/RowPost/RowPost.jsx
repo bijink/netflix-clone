@@ -21,6 +21,7 @@ function RowPost(props) {
 
    const handleMovieDetails = (data) => {
       setDetails(data);
+      // console.log(data.adult);
       history.push('/details');
    };
 

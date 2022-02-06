@@ -14,7 +14,7 @@ const MovieDetails = () => {
    // console.log(count);
 
    const { details } = useContext(MovieDetailsCC);
-   // console.log(details);
+   // console.log(details.adult);
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
 
    useEffect(() => {
@@ -44,12 +44,17 @@ const MovieDetails = () => {
          if (response.data.results.length !== 0) {
             // console.log(response.data.results[0]);
             // console.log(response.data.results);
+            // console.log(response.data);
+            // console.log(response);
             setVideoPopUpTrigger(true);
             setUrlId(response.data.results[count]);
             setLg(response.data.results.length);
          } else {
             alert('Sorry, There is no video available');
          }
+         // }).catch((err) => console.log(err));
+      }).catch((err) => {
+         err && alert('Sorry, There is no video available');
       });
    };
 
@@ -67,7 +72,7 @@ const MovieDetails = () => {
                   <p className="overview" >{details.overview && details.overview}</p>
                   <br />
                   <p>{details.release_date && `Release Date : ${details.release_date}`} </p>
-                  <p>{details.vote_average && `Rating (AVG) : ${details.vote_average} / 10`} </p>
+                  <p>{details.vote_average && `Rating (Avg) : ${details.vote_average} / 10`} </p>
                   <br />
                   <h2 onClick={() => handleVideo()} className="Teaser" ><i className={`${details.id && 'fab fa-youtube'}`}></i> {details.id && 'Teaser / Making'}</h2>
                </div>
@@ -75,7 +80,8 @@ const MovieDetails = () => {
          </div>
          {
             videoPopUpTrigger &&
-            (urlId ? < VideoPopUp urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
+            // ((urlId) ? < VideoPopUp urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
+            ((urlId) && < VideoPopUp urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} />)
          }
       </div >
    );

@@ -46,6 +46,8 @@ function Banner(props) {
          } else {
             alert('Sorry, There is no video available');
          }
+      }).catch((err) => {
+         err && alert('Sorry, There is no video available');
       });
    };
 
@@ -69,7 +71,7 @@ function Banner(props) {
          {/* <div className="banner" > */}
          <div className="fade_content">
             <div className="content">
-               <div className='flex_div' ></div>
+               <div className='flex_div'></div>
                <h1 className="title">{movie ? movie.title || movie.name : ''}</h1>
                <div className="banner_button">
                   <button className="button" onClick={handleVideo}><i className="fas fa-play"></i> Play</button>
@@ -78,10 +80,11 @@ function Banner(props) {
                <p className="description">{movie ? movie.overview : ''}</p>
             </div>
          </div>
-         <div className="fade_bottom"></div>
+         <div className="fade_bottom"></div>;
          {
             videoPopUpTrigger &&
-            (urlId ? < VideoPopUp banner urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
+            // (urlId ? < VideoPopUp banner urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
+            (urlId && < VideoPopUp banner urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} />)
          }
       </div>
    );

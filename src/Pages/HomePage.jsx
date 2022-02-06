@@ -10,8 +10,8 @@ const HomePage = () => {
       <div>
          <NavBar />
          <Banner url={Trendings} />
-         <RowPost title='Netfilx Origins' url={Origins} />
-         <RowPost title='Trendings' url={Trendings} isSmall />
+         <RowPost title='Trendings' url={Trendings} />
+         <RowPost title='Netfilx Origins' url={Origins} isSmall />
          <RowPost title='Action' url={Actions} />
          <RowPost title='Romance' url={RomanceMovies} isSmall />
          <RowPost title='Comedy' url={ComedyMovies} />
