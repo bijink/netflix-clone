@@ -1,0 +1,108 @@
+.videoBgShade_banner,
+.videoBgShade_movieDetails {
+   width: 100%;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.932);
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1;
+   .videoFrame {
+      width: 90%;
+      height: 80vh;
+      position: absolute;
+      top: 7%;
+      left: 5%;
+   }
+   .closeBtn {
+      position: absolute;
+      left: 50%;
+      bottom: 4.5vh;
+      i {
+         cursor: pointer;
+         font-size: 3rem;
+         color: rgba(255, 0, 0, 0.644);
+         position: relative;
+         left: -50%;
+         &:hover {
+            color: #c00010;
+         }
+      }
+   }
+   .videoBackBtn,
+   .videoNextBtn {
+      position: absolute;
+      top: 50%;
+      cursor: pointer;
+      font-size: 2.8rem;
+      color: rgba(255, 255, 255, 0.192);
+      &:hover {
+         color: rgba(255, 255, 255, 0.575);
+      }
+   }
+   .videoBackBtn {
+      left: 0.5vw;
+   }
+   .videoNextBtn {
+      right: 0.5vw;
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   .videoBgShade_banner,
+   .videoBgShade_movieDetails {
+      .videoFrame {
+         width: 80%;
+         height: 60vh;
+         left: 10%;
+         top: 20%;
+      }
+      .closeBtn {
+         bottom: 10vh;
+         i {
+            font-size: 3rem;
+         }
+      }
+      .videoBackBtn,
+      .videoNextBtn {
+         font-size: 2.8rem;
+      }
+      .videoBackBtn {
+         left: 2vw;
+      }
+      .videoNextBtn {
+         right: 2vw;
+      }
+   }
+}
+
+@media screen and (max-width: 580px) {
+   .videoBgShade_banner,
+   .videoBgShade_movieDetails {
+      .videoFrame {
+         width: 90%;
+         height: 30vh;
+         top: 20%;
+         left: 5%;
+      }
+      .closeBtn {
+         bottom: 18vh;
+         i {
+            font-size: 3rem;
+         }
+      }
+      .videoBackBtn,
+      .videoNextBtn {
+         font-size: 2.5rem;
+         position: absolute;
+         top: auto;
+         bottom: 40vh;
+      }
+      .videoBackBtn {
+         left: 8vh;
+      }
+      .videoNextBtn {
+         right: 8vh;
+      }
+   }
+}

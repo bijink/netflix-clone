@@ -1,39 +1,44 @@
 .parentDivMovieDetails {
    background-size: cover;
-   height: 100vh;
+   background-position: center;
    color: white;
    .shadeDiv {
       width: 100%;
-      height: 100vh;
       background-color: rgba(0, 0, 0, 0.762);
       display: flex;
-      .sidePoster {
-         img {
-            margin: 6rem 3rem;
-            max-width: 30vw;
-            max-height: 70vh;
-            border-radius: 0.15rem;
-         }
+      .flex-div {
+         height: 100vh;
       }
-      .movieDetails {
-         margin: 7rem 0 0 0;
-         .overview {
-            padding: 0 8rem 0 0;
-         }
-         .Teaser {
-            cursor: pointer;
-            font-size: medium;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            margin: auto;
-            &:hover {
-               color: rgb(196, 196, 196);
+      .movieContent {
+         display: flex;
+         .sidePoster {
+            img {
+               margin: 6rem 3rem;
+               max-width: 30vw;
+               max-height: 70vh;
+               border-radius: 0.15rem;
             }
-            i {
-               color: orangered;
-               font-size: x-large;
-               margin: 0 0.3rem 0 0;
+         }
+         .movieDetails {
+            margin: 7rem 3rem 0 0;
+            padding: 0 0 3rem 0;
+            .Teaser {
+               cursor: pointer;
+               font-size: medium;
+               font-weight: 500;
+               display: inline-flex;
+               align-items: center;
+               &:hover {
+                  color: rgb(196, 196, 196);
+               }
+               i {
+                  color: orangered;
+                  font-size: x-large;
+                  margin: 0 0.3rem 0 0;
+               }
+            }
+            .overview {
+               text-align: justify;
             }
          }
       }
@@ -45,60 +50,58 @@
       justify-content: center;
       margin-top: 1%;
    }
-   .videoBtn {
-      cursor: pointer;
-      font-size: 3vw;
-      color: rgba(255, 255, 255, 0.192);
-      &:hover {
-         // color: #c00010;
-         color: rgba(255, 255, 255, 0.575);
-      }
-   }
-   .videoBackbtn,
-   .videoNextbtn {
-      cursor: pointer;
-      font-size: 3vw;
-      position: absolute;
-      top: 50%;
-   }
-   .videoBackbtn {
-      left: 1vw;
-   }
-   .videoNextbtn {
-      right: 1vw;
-   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 720px) {
    .parentDivMovieDetails {
-      .videoBtn {
-         font-size: 5vw;
-      }
-      .videoBackbtn {
-         left: 2vw;
-      }
-      .videoNextbtn {
-         right: 2vw;
+      .shadeDiv {
+         .movieContent {
+            .sidePoster {
+               img {
+                  margin: 6rem 2rem;
+               }
+            }
+            .movieDetails {
+               .title {
+                  margin-top: 2rem;
+               }
+               .overview {
+                  padding: 1rem 2rem;
+                  position: absolute;
+                  margin: 33vw 0 0;
+                  left: 0rem;
+               }
+            }
+         }
       }
    }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 480px) {
    .parentDivMovieDetails {
-      .videoBtn {
-         font-size: 10vw;
-      }
-      .videoBackbtn,
-      .videoNextbtn {
-         position: absolute;
-         top: auto;
-         bottom: 30vh;
-      }
-      .videoBackbtn {
-         left: 8vh;
-      }
-      .videoNextbtn {
-         right: 8vh;
+      .shadeDiv {
+         .movieContent {
+            display: flex;
+            flex-direction: column;
+            .sidePoster {
+               img {
+                  margin: 6rem 2rem 2rem;
+                  max-width: 50vw;
+                  border-radius: 0.15rem;
+               }
+            }
+            .movieDetails {
+               margin: 0 2rem;
+               .title {
+                  margin-top: 0;
+               }
+               .overview {
+                  padding: 0;
+                  position: static;
+                  margin: 0;
+               }
+            }
+         }
       }
    }
 }

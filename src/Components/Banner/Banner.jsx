@@ -4,9 +4,8 @@ import axios from '../../Axios';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
-import VideoPopUp from '../../PopUps/VideoPopUp/VideoPopUp';
-import YoutubeEmbed from '../YoutubeEmbed/YoutubeEmbed';
 import { useHistory } from 'react-router';
+import VideoPopUp from '../VideoPopUp/VideoPopUp';
 
 function Banner(props) {
    const [movie, setMovie] = useState();
@@ -82,11 +81,7 @@ function Banner(props) {
          <div className="fade_bottom"></div>
          {
             videoPopUpTrigger &&
-            <VideoPopUp shade={true} historys={true} >
-               {urlId ? <YoutubeEmbed embedId={urlId.key} styles={true} /> : <h1 className="noVideo">This video is unavailable.</h1>}
-               {(urlId && !(count === 0)) && <i className="videoBtn videoBackbtn_b fas fa-chevron-circle-left" onClick={() => handleVideo('back')} ></i>}
-               {(urlId && !(count === (lg - 1))) && < i className="videoBtn videoNextbtn_b fas fa-chevron-circle-right" onClick={() => handleVideo('next')} ></i>}
-            </VideoPopUp>
+            (urlId ? < VideoPopUp banner urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
          }
       </div>
    );

@@ -62,7 +62,6 @@
       width: 100%;
       background-image: linear-gradient(180deg, transparent, rgb(8, 8, 8));
       position: absolute;
-      // top: $banner_height - $fade_b_height;
       top: $banner_height - $fade_b_height + 0.05rem;
    }
    .noVideo {
@@ -70,26 +69,6 @@
       font-weight: 300;
       display: flex;
       justify-content: center;
-   }
-   .videoBtn {
-      font-size: 3vw;
-      color: rgba(255, 255, 255, 0.192);
-      cursor: pointer;
-      &:hover {
-         // color: #c00010;
-         color: rgba(255, 255, 255, 0.575);
-      }
-   }
-   .videoBackbtn_b,
-   .videoNextbtn_b {
-      position: absolute;
-      top: 50%;
-   }
-   .videoBackbtn_b {
-      left: 1vw;
-   }
-   .videoNextbtn_b {
-      right: 1vw;
    }
 }
 
@@ -107,11 +86,8 @@
                display: block;
                flex-grow: 1;
             }
-            .title {
-               font-size: 2.5rem;
-            }
             .banner_button {
-               margin-bottom: 2rem;
+               margin-bottom: 1rem;
             }
             .description {
                display: none;
@@ -123,34 +99,22 @@
          height: $fade_b_height;
          top: $banner_height - $fade_b_height + 0.05rem;
       }
-      .videoBtn {
-         font-size: 5vw;
-      }
-      .videoBackbtn_b {
-         left: 2vw;
-      }
-      .videoNextbtn_b {
-         right: 2vw;
-      }
    }
 }
 
 @media screen and (max-width: 580px) {
    .banner {
-      .videoBtn {
-         font-size: 10vw;
-      }
-      .videoBackbtn_b,
-      .videoNextbtn_b {
-         position: absolute;
-         top: auto;
-         bottom: 30vh;
-      }
-      .videoBackbtn_b {
-         left: 8vh;
-      }
-      .videoNextbtn_b {
-         right: 8vh;
+      .fade_content {
+         .content {
+            .title {
+               font-size: 2.5rem;
+            }
+            .banner_button {
+               .button {
+                  margin-bottom: 0.4rem;
+               }
+            }
+         }
       }
    }
 }
