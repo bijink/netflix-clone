@@ -18,6 +18,7 @@
          margin-right: 10px;
          cursor: pointer;
          transition-duration: 400ms;
+         border-radius: 2.5px;
          &:first-child {
             margin-left: 30px;
          }
@@ -31,11 +32,9 @@
       }
       .poster {
          max-height: 220px;
-         border-radius: 1.2px;
       }
       .smallPoster {
          max-height: 180px;
-         border-radius: 1.5px;
       }
    }
 }

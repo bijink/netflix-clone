@@ -59,12 +59,12 @@ const MovieDetails = () => {
    };
 
    return (
-      <div className="parentDivMovieDetails" style={{ backgroundImage: `url(${details && (imageUrl + details.backdrop_path)})` }}>
+      <div className="parentDivMovieDetails" style={{ backgroundImage: `url(${details && (imageUrl + '/original' + details.backdrop_path)})` }}>
          <div className="shadeDiv">
             <div className="flex-div"></div>
             <div className="movieContent">
                <div className="sidePoster">
-                  <img src={imageUrl + details.poster_path} alt="Movie Poster" />
+                  <img src={imageUrl + '/original' + details.poster_path} alt="Movie Poster" />
                </div>
                <div className="movieDetails">
                   <h1 className='title' >{details.name || details.title}</h1>

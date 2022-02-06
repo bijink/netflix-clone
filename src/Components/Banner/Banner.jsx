@@ -67,7 +67,7 @@ function Banner(props) {
    }, [props.url, setVideoPopUpTrigger]);
 
    return (
-      <div className="banner" style={{ backgroundImage: `url(${movie ? imageUrl + movie.backdrop_path : ''})` }}>
+      <div className="banner" style={{ backgroundImage: `url(${movie ? imageUrl + '/original' + movie.backdrop_path : ''})` }}>
          {/* <div className="banner" > */}
          <div className="fade_content">
             <div className="content">

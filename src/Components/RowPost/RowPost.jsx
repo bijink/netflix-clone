@@ -7,6 +7,7 @@ import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 
 function RowPost(props) {
    const [movies, setMovies] = useState([]);
+   // console.log(movies);
 
    const { setDetails } = useContext(MovieDetailsCC);
 
@@ -21,7 +22,7 @@ function RowPost(props) {
 
    const handleMovieDetails = (data) => {
       setDetails(data);
-      // console.log(data.adult);
+      // console.log(data);
       history.push('/details');
    };
 
@@ -31,7 +32,7 @@ function RowPost(props) {
          <div className="posters">
             {
                movies.map((obj) => (
-                  <img onClick={() => handleMovieDetails(obj)} key={obj.id} className={props.isSmall ? "smallPoster" : "poster"} src={`${imageUrl + obj.poster_path}`} alt="Poster" />
+                  <img onClick={() => handleMovieDetails(obj)} key={obj.id} className={props.isSmall ? "smallPoster" : "poster"} src={`${imageUrl + '/w200' + obj.poster_path}`} alt="Poster" />
                ))
             }
          </div>

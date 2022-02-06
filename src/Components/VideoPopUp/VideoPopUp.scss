@@ -7,13 +7,14 @@
    top: 0;
    left: 0;
    z-index: 1;
-   // overflow: hidden;
    .videoFrame {
       width: 90%;
       height: 80vh;
       position: absolute;
       top: 7%;
       left: 5%;
+      border: solid 2px rgba(255, 255, 255, 0.25);
+      border-radius: 0.3rem;
    }
    .closeBtn {
       position: absolute;
@@ -35,17 +36,18 @@
       position: absolute;
       top: 50%;
       cursor: pointer;
-      font-size: 2.8rem;
+      // font-size: 2.8rem;
+      font-size: 2.6rem;
       color: rgba(255, 255, 255, 0.192);
       &:hover {
          color: rgba(255, 255, 255, 0.575);
       }
    }
    .videoBackBtn {
-      left: 0.5vw;
+      left: 0.3vw;
    }
    .videoNextBtn {
-      right: 0.5vw;
+      right: 0.3vw;
    }
 }
 
@@ -66,7 +68,7 @@
       }
       .videoBackBtn,
       .videoNextBtn {
-         font-size: 2.8rem;
+         font-size: 2.5rem;
       }
       .videoBackBtn {
          left: 2vw;
