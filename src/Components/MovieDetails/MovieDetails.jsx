@@ -5,23 +5,24 @@ import { API_KEY, imageUrl } from '../../Constants/Constants';
 import axios from '../../Axios';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import VideoPopUp from '../VideoPopUp/VideoPopUp';
+import { useCookies } from 'react-cookie';
+
 
 const MovieDetails = () => {
+   const [cookies, setCookie] = useCookies(['Netflix_cookie']);
+
+   const { details } = useContext(MovieDetailsCC);
+   // console.log(details);
+   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
+
    const [urlId, setUrlId] = useState();
    // console.log(urlId);
    var [count, setCount] = useState(0);
    const [lg, setLg] = useState();
    // console.log(count);
+   // getting stored movieDetails data from cookies and setting to state
+   const [movieDetails] = useState((details.length !== 0) ? details : (cookies.movie_details));
 
-   const { details } = useContext(MovieDetailsCC);
-   // console.log(details.adult);
-   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
-
-   useEffect(() => {
-      setVideoPopUpTrigger(false);
-      return () => {
-      };
-   }, [setVideoPopUpTrigger]);
 
    const handleVideo = (backNext) => {
       if (!videoPopUpTrigger) {
@@ -39,8 +40,10 @@ const MovieDetails = () => {
                setCount(count = 0);
          }
       }
+
       // console.log(details.id);
-      axios.get(`/movie/${details.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
+      // axios.get(`/movie/${details.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
+      axios.get(`/movie/${movieDetails.id}/videos?api_key=${API_KEY}&language=en-US`).then(response => {
          if (response.data.results.length !== 0) {
             // console.log(response.data.results[0]);
             // console.log(response.data.results);
@@ -58,29 +61,37 @@ const MovieDetails = () => {
       });
    };
 
+
+   useEffect(() => {
+      setVideoPopUpTrigger(false);
+
+      // storing movieDetails data to browser cookies
+      ((details.length !== 0)) && (setCookie('movie_details', details, { path: '/' }));
+   }, [setVideoPopUpTrigger]);
+
+
    return (
-      <div className="parentDivMovieDetails" style={{ backgroundImage: `url(${details && (imageUrl + '/original' + details.backdrop_path)})` }}>
+      <div className="parentDivMovieDetails" style={{ backgroundImage: `url(${imageUrl + '/original' + movieDetails.backdrop_path})` }}>
          <div className="shadeDiv">
             <div className="flex-div"></div>
             <div className="movieContent">
                <div className="sidePoster">
-                  <img src={imageUrl + '/original' + details.poster_path} alt="Movie Poster" />
+                  <img src={imageUrl + '/original' + movieDetails.poster_path} alt="Movie Poster" />
                </div>
                <div className="movieDetails">
-                  <h1 className='title' >{details.name || details.title}</h1>
+                  <h1 className='title' >{movieDetails.name || movieDetails.title}</h1>
                   <br />
-                  <p className="overview" >{details.overview && details.overview}</p>
+                  <p className="overview" >{movieDetails.overview && movieDetails.overview}</p>
                   <br />
-                  <p>{details.release_date && `Release Date : ${details.release_date}`} </p>
-                  <p>{details.vote_average && `Rating (Avg) : ${details.vote_average} / 10`} </p>
+                  <p>{movieDetails.release_date && `Release Date : ${movieDetails.release_date}`} </p>
+                  <p>{movieDetails.vote_average && `Rating (Avg) : ${movieDetails.vote_average} / 10`} </p>
                   <br />
-                  <h2 onClick={() => handleVideo()} className="Teaser" ><i className={`${details.id && 'fab fa-youtube'}`}></i> {details.id && 'Teaser / Making'}</h2>
+                  {movieDetails.id && <h2 onClick={() => handleVideo()} className="Teaser" ><i className="fab fa-youtube"></i>Watch Teaser/Making</h2>}
                </div>
             </div>
          </div>
          {
             videoPopUpTrigger &&
-            // ((urlId) ? < VideoPopUp urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} /> : <h1 className="noVideo">This video is unavailable.</h1>)
             ((urlId) && < VideoPopUp urlId={urlId} videoCount={count} videoLenght={lg} handleVideo={handleVideo} />)
          }
       </div >

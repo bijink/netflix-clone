@@ -7,6 +7,7 @@ import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import { useHistory } from 'react-router';
 import VideoPopUp from '../VideoPopUp/VideoPopUp';
 
+
 function Banner(props) {
    const [movie, setMovie] = useState();
    const [urlId, setUrlId] = useState();
@@ -68,7 +69,6 @@ function Banner(props) {
 
    return (
       <div className="banner" style={{ backgroundImage: `url(${movie ? imageUrl + '/original' + movie.backdrop_path : ''})` }}>
-         {/* <div className="banner" > */}
          <div className="fade_content">
             <div className="content">
                <div className='flex_div'></div>
