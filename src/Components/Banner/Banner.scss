@@ -64,12 +64,6 @@
       position: absolute;
       top: $banner_height - $fade_b_height + 0.05rem;
    }
-   // .noVideo {
-   //    font-size: x-large;
-   //    font-weight: 300;
-   //    display: flex;
-   //    justify-content: center;
-   // }
 }
 
 @media screen and (max-width: 1000px) {
@@ -104,10 +98,18 @@
 
 @media screen and (max-width: 580px) {
    .banner {
+      $banner_height: 28rem;
+      height: $banner_height;
       .fade_content {
          .content {
+            height: 21rem;
+            .flex_div {
+               display: block;
+               flex-grow: 1;
+            }
             .title {
                font-size: 2.5rem;
+               margin-top: 0rem;
             }
             .banner_button {
                .button {
@@ -115,6 +117,11 @@
                }
             }
          }
+      }
+      .fade_bottom {
+         $fade_b_height: 8rem;
+         height: $fade_b_height;
+         top: $banner_height - $fade_b_height + 0.05rem;
       }
    }
 }

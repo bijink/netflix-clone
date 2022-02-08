@@ -26,8 +26,11 @@
                cursor: pointer;
                font-size: medium;
                font-weight: 500;
-               display: inline-flex;
+               display: flex;
                align-items: center;
+               background-color: transparent;
+               border: none;
+               color: rgb(255, 255, 255);
                &:hover {
                   color: rgb(196, 196, 196);
                }
@@ -43,13 +46,6 @@
          }
       }
    }
-   // .noVideo {
-   //    font-size: x-large;
-   //    font-weight: 300;
-   //    display: flex;
-   //    justify-content: center;
-   //    margin-top: 1%;
-   // }
 }
 
 @media screen and (max-width: 720px) {

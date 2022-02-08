@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './RowPost.scss';
 import axios from '../../Axios';
 import { imageUrl } from '../../Constants/Constants';
-import { Route, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 
 
