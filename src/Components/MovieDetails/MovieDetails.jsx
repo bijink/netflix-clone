@@ -4,18 +4,31 @@ import { MovieDetailsCC } from '../../Store/MovieDetailsContext';
 import { API_KEY, imageUrl } from '../../Constants/Constants';
 import { VideoPopUpCC } from '../../Store/VideoPopUpContext';
 import VideoPopUp from '../VideoPopUp/VideoPopUp';
-import { useCookies } from 'react-cookie';
 import axios from "../../Axios";
+import { useHistory } from 'react-router-dom';
 
 
 const MovieDetails = () => {
-   const [cookies, setCookie] = useCookies(['Netflix_cookie']);
+   const history = useHistory();
 
    const { details } = useContext(MovieDetailsCC);
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
 
+   // const [movieDetails] = useState(details);
+   //
+   // getting stored movieDetails data from localStorage and setting to state
+   // const [movieDetails] = useState((details.length !== 0) ? details : JSON.parse(localStorage.getItem("netflix_movie_details")));
+   // 
    // getting stored movieDetails data from cookies and setting to state
-   const [movieDetails] = useState((details.length !== 0) ? details : (cookies.movie_details));
+   // const [movieDetails] = useState((details.length !== 0) ? details : (cookies.movie_details));
+   //
+   // getting stored movieDetails data from sessionStorage and setting to state
+   const [movieDetails] = useState((details.length !== 0) ? details : JSON.parse(sessionStorage.getItem("netflix_movie_details")));
+
+
+   window.onpopstate = function () {
+      videoPopUpTrigger && history.goForward();
+   };
 
 
    const handleVideo = () => {
@@ -34,10 +47,15 @@ const MovieDetails = () => {
    useEffect(() => {
       setVideoPopUpTrigger(false);
 
+      // storing movieDetails data to browser localStorage
+      // ((details.length !== 0)) && (localStorage.setItem("netflix_movie_details", JSON.stringify(movieDetails)));
+      // 
       // storing movieDetails data to browser cookies
       // ((details.length !== 0)) && (setCookie('movie_details', details, { path: '/' }));
-      ((details.length !== 0)) && (setCookie('movie_details', details, { path: '/details' }));
-   }, [setVideoPopUpTrigger, details, setCookie]);
+      // 
+      // storing movieDetails data to browser sessionStorage
+      ((details.length !== 0)) && (sessionStorage.setItem("netflix_movie_details", JSON.stringify(movieDetails)));
+   }, [setVideoPopUpTrigger, details, movieDetails]);
 
 
    return (

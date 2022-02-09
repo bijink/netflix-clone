@@ -1,5 +1,5 @@
 {
-   "name": "example",
+   "name": "netflix-teasers",
    "version": "0.1.0",
    "private": true,
    "dependencies": {
@@ -7,20 +7,20 @@
       "@fortawesome/free-regular-svg-icons": "^6.0.0-beta3",
       "@fortawesome/free-solid-svg-icons": "^6.0.0",
       "@fortawesome/react-fontawesome": "^0.1.17",
-      "@testing-library/jest-dom": "^5.13.0",
-      "@testing-library/react": "^11.2.7",
-      "@testing-library/user-event": "^12.8.3",
-      "axios": "^0.21.4",
+      "@testing-library/jest-dom": "^5.16.2",
+      "@testing-library/react": "^12.1.2",
+      "@testing-library/user-event": "^13.5.0",
+      "axios": "^0.26.0",
       "font-awesome": "^4.7.0",
       "react": "^17.0.2",
       "react-cookie": "^4.1.1",
       "react-dom": "^17.0.2",
       "react-player": "^2.9.0",
       "react-router-dom": "^5.3.0",
-      "react-scripts": "4.0.3",
-      "sass": "^1.42.1",
-      "sass-loader": "^12.1.0",
-      "web-vitals": "^1.1.2"
+      "react-scripts": "^5.0.0",
+      "sass": "^1.49.7",
+      "sass-loader": "^12.6.0",
+      "web-vitals": "^2.1.4"
    },
    "scripts": {
       "start": "react-scripts start",
