@@ -14,7 +14,7 @@ const VideoPopUp = ({ banner, movieDetails }) => {
 
    const [videoData, setVideoData] = useState();
    const [videoDataLength, setVideoDataLength] = useState();
-   var [count, setCount] = useState(0);
+   const [count, setCount] = useState(0);
    const [videoDataIndex, setVideoDataIndex] = useState();
    const [playlistOrNot, setPlaylistOrNot] = useState(false);
    const [showPlayList, setShowPlayList] = useState(false);
@@ -34,9 +34,9 @@ const VideoPopUp = ({ banner, movieDetails }) => {
 
    const handleVideoCount = (prevOrNext) => {
       if (prevOrNext === 'prev') {
-         setCount((count === 0) ? (count = (videoDataLength - 1)) : (count -= 1));
+         setCount((count === 0) ? (videoDataLength - 1) : (count - 1));
       } else if (prevOrNext === 'next') {
-         setCount((count < (videoDataLength - 1)) ? (count += 1) : (count = 0));
+         setCount((count < (videoDataLength - 1)) && (count + 1));
       }
    };
 
@@ -76,7 +76,7 @@ const VideoPopUp = ({ banner, movieDetails }) => {
                   height="100%"
                   controls
                   playing
-                  onEnded={() => ((count < (videoDataLength - 1)) && setCount(count += 1))}
+                  onEnded={() => setCount((count < (videoDataLength - 1)) && (count + 1))}
                />
             </div>
 
