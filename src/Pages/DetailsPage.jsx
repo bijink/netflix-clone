@@ -1,6 +1,6 @@
-import React from 'react';
-import NavBar from '../Components/NavBar/NavBar';
-import MovieDetails from '../Components/MovieDetails/MovieDetails';
+import React from "react";
+import NavBar from "../Components/NavBar/NavBar";
+import MovieDetails from "../Components/MovieDetails/MovieDetails";
 
 const DetailsPage = () => {
    return (

@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import MovieDetailsContext from './Store/MovieDetailsContext';
-import VideoPopUpContext from './Store/VideoPopUpContext';
-import '../node_modules/font-awesome/css/font-awesome.min.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import MovieDetailsContext from "./Store/MovieDetailsContext";
+import VideoPopUpContext from "./Store/VideoPopUpContext";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
 import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
@@ -16,5 +16,5 @@ ReactDOM.render(
          </VideoPopUpContext>
       </CookiesProvider>
    </React.StrictMode>,
-   document.getElementById('root')
+   document.getElementById("root")
 );

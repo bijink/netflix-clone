@@ -1,4 +1,4 @@
-import { API_KEY } from './Constants/Constants';
+import { API_KEY } from "./Constants/Constants";
 
 export const Trendings = `trending/all/week?api_key=${API_KEY}&language=en-US`;
 export const Origins = `discover/tv?api_key=${API_KEY}&with_networks=213`;
