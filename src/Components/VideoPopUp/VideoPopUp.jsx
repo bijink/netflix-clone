@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./VideoPopUp.scss";
 import { useContext } from "react";
 import { VideoPopUpCC } from "../../Store/VideoPopUpContext";
-import { API_KEY } from "../../Constants/Constants";
-import axios from "../../Axios";
 import ReactPlayer from "react-player/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { axios_instance } from "../../Utils/axios.utils";
 
 const VideoPopUp = ({ banner, movieDetails }) => {
    const { setVideoPopUpTrigger } = useContext(VideoPopUpCC);
@@ -50,8 +49,8 @@ const VideoPopUp = ({ banner, movieDetails }) => {
 
    useEffect(() => {
       if (movieDetails) {
-         axios
-            .get(`/movie/${movieDetails.id}/videos?api_key=${API_KEY}&language=en-US`)
+         axios_instance
+            .get(`/movie/${movieDetails.id}/videos?language=en-US`)
             .then((response) => {
                if (response.data.results.length !== 0) {
                   setVideoDataLength(response.data.results.length);

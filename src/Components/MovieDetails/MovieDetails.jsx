@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MovieDetails.scss";
 import { MovieDetailsCC } from "../../Store/MovieDetailsContext";
-import { API_KEY, imageUrl } from "../../Constants/Constants";
 import { VideoPopUpCC } from "../../Store/VideoPopUpContext";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
-import axios from "../../Axios";
 import { useHistory } from "react-router-dom";
+import { axios_instance } from "../../Utils/axios.utils";
+import { imgUrl } from "../../Data/constant.data";
 
 const MovieDetails = () => {
    const history = useHistory();
@@ -31,8 +31,8 @@ const MovieDetails = () => {
    };
 
    const handleVideo = () => {
-      axios
-         .get(`/movie/${movieDetails.id}/videos?api_key=${API_KEY}&language=en-US`)
+      axios_instance
+         .get(`/movie/${movieDetails.id}/videos?language=en-US`)
          .then((response) => {
             if (response.data.results.length !== 0) {
                setVideoPopUpTrigger(true);
@@ -61,13 +61,13 @@ const MovieDetails = () => {
    return (
       <div
          className="parentDivMovieDetails"
-         style={{ backgroundImage: `url(${imageUrl + "/original" + movieDetails.backdrop_path})` }}
+         style={{ backgroundImage: `url(${imgUrl.w_og + movieDetails.backdrop_path})` }}
       >
          <div className="shadeDiv">
             <div className="flex-div"></div>
             <div className="movieContent">
                <div className="sidePoster">
-                  <img src={imageUrl + "/original" + movieDetails.poster_path} alt="Movie Poster" />
+                  <img src={imgUrl.w_og + movieDetails.poster_path} alt="Movie Poster" />
                </div>
                <div className="movieDetails">
                   <h1 className="title">{movieDetails.name || movieDetails.title}</h1>

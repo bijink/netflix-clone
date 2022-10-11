@@ -3,21 +3,22 @@ import Banner from "../Components/Banner/Banner";
 import Footer from "../Components/Footer/Footer";
 import NavBar from "../Components/NavBar/NavBar";
 import RowPost from "../Components/RowPost/RowPost";
-import { Trendings, Origins, Actions, RomanceMovies, ComedyMovies, HorrorMovies } from "../Urls";
+import { category } from "../Data/category.data";
 
 const HomePage = () => {
    return (
-      <div>
+      <>
          <NavBar />
-         <Banner url={Trendings} />
-         <RowPost title="Trendings" url={Trendings} />
-         <RowPost title="Netfilx Origins" url={Origins} isSmall />
-         <RowPost title="Action" url={Actions} />
-         <RowPost title="Romance" url={RomanceMovies} isSmall />
-         <RowPost title="Comedy" url={ComedyMovies} />
-         <RowPost title="Horror" url={HorrorMovies} isSmall />
+         <Banner url={category.trending.url} />
+         <RowPost category={category.trending} />
+         <RowPost category={category.origin} isSmall />
+         <RowPost category={category.action} />
+         <RowPost category={category.romance} isSmall />
+         <RowPost category={category.comedy} />
+         <RowPost category={category.horror} isSmall />
+         <RowPost category={category.documentary} />
          <Footer />
-      </div>
+      </>
    );
 };
 

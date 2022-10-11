@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./RowPost.scss";
-import axios from "../../Axios";
-import { imageUrl } from "../../Constants/Constants";
 import { useHistory } from "react-router-dom";
 import { MovieDetailsCC } from "../../Store/MovieDetailsContext";
+import { axios_instance } from "../../Utils/axios.utils";
+import { imgUrl } from "../../Data/constant.data";
 
-function RowPost(props) {
+function RowPost({ category, isSmall }) {
    const history = useHistory();
 
    const { setDetails } = useContext(MovieDetailsCC);
@@ -22,24 +22,22 @@ function RowPost(props) {
    };
 
    useEffect(() => {
-      axios.get(props.url).then((response) => {
-         // console.log(props.title +  response.data.results);
-         // console.log(props.title);
-         // console.log(response.data.results);
-         setMovies(response.data.results);
+      axios_instance.get(category.url).then((res) => {
+         // console.log("axios_result: ",res.data.results);
+         setMovies(res.data.results);
       });
-   }, [props.url]);
+   }, [category]);
 
    return (
       <div className="row">
-         <h2 className="heading">{props.title}</h2>
+         <h2 className="heading">{category.title}</h2>
          <div className="posters">
             {movies.map((obj) => (
                <img
                   onClick={() => handleMovieDetails(obj)}
                   key={obj.id}
-                  className={props.isSmall ? "smallPoster" : "poster"}
-                  src={`${imageUrl + "/w200" + obj.poster_path}`}
+                  className={isSmall ? "smallPoster" : "poster"}
+                  src={imgUrl.w_200 + obj.poster_path}
                   alt="Poster"
                />
             ))}

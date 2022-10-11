@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Banner.scss";
-import axios from "../../Axios";
-import { API_KEY, imageUrl } from "../../Constants/Constants";
 import { MovieDetailsCC } from "../../Store/MovieDetailsContext";
 import { VideoPopUpCC } from "../../Store/VideoPopUpContext";
 import { useHistory } from "react-router";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import { axios_instance } from "../../Utils/axios.utils";
+import { imgUrl } from "../../Data/constant.data";
 
 const Banner = ({ url }) => {
    const history = useHistory();
@@ -16,8 +16,8 @@ const Banner = ({ url }) => {
    const [movieDetails, setMovieDetails] = useState();
 
    const handleVideo = () => {
-      axios
-         .get(`/movie/${movieDetails.id}/videos?api_key=${API_KEY}&language=en-US`)
+      axios_instance
+         .get(`/movie/${movieDetails.id}/videos?language=en-US`)
          .then((response) => {
             if (response.data.results.length !== 0) {
                setVideoPopUpTrigger(true);
@@ -37,7 +37,8 @@ const Banner = ({ url }) => {
 
    useEffect(() => {
       setVideoPopUpTrigger(false);
-      axios.get(url).then((response) => {
+      // TODO:: use staling (react-query)
+      axios_instance.get(url).then((response) => {
          const index = Math.floor(Math.random() * response.data.results.length);
          setMovieDetails(response.data.results[index]);
       });
@@ -47,7 +48,7 @@ const Banner = ({ url }) => {
       <div
          className="banner"
          style={{
-            backgroundImage: `url(${movieDetails ? imageUrl + "/original" + movieDetails.backdrop_path : ""})`,
+            backgroundImage: `url(${movieDetails ? imgUrl.w_og + movieDetails.backdrop_path : ""})`,
          }}
       >
          <div className="fade_content">
