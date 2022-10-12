@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./MovieDetails.scss";
-import { MovieDetailsCC } from "../../Store/MovieDetailsContext";
-import { VideoPopUpCC } from "../../Store/VideoPopUpContext";
+import { MovieDetailsContext, VideoPopUpContext } from "../../Context";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
 import { useHistory } from "react-router-dom";
 import { axios_instance } from "../../Utils/axios.utils";
@@ -10,8 +9,8 @@ import { imgUrl } from "../../Data/constant.data";
 const MovieDetails = () => {
    const history = useHistory();
 
-   const { details } = useContext(MovieDetailsCC);
-   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpCC);
+   const { details } = useContext(MovieDetailsContext);
+   const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
    // const [movieDetails] = useState(details);
    //

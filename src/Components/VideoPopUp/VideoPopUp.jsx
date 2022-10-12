@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./VideoPopUp.scss";
 import { useContext } from "react";
-import { VideoPopUpCC } from "../../Store/VideoPopUpContext";
+import { VideoPopUpContext } from "../../Context";
 import ReactPlayer from "react-player/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { axios_instance } from "../../Utils/axios.utils";
 
 const VideoPopUp = ({ banner, movieDetails }) => {
-   const { setVideoPopUpTrigger } = useContext(VideoPopUpCC);
+   const { setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
    const [videoData, setVideoData] = useState();
    const [videoDataLength, setVideoDataLength] = useState();

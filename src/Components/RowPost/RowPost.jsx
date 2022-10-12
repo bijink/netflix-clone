@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./RowPost.scss";
 import { useHistory } from "react-router-dom";
-import { MovieDetailsCC } from "../../Store/MovieDetailsContext";
+import { MovieDetailsContext } from "../../Context";
 import { axios_instance } from "../../Utils/axios.utils";
 import { imgUrl } from "../../Data/constant.data";
 
 function RowPost({ category, isSmall }) {
    const history = useHistory();
 
-   const { setDetails } = useContext(MovieDetailsCC);
+   const { setDetails } = useContext(MovieDetailsContext);
 
    const [movies, setMovies] = useState([]);
    // console.log(movies);
