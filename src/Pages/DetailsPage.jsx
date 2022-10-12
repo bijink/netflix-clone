@@ -1,12 +1,12 @@
 import React from "react";
 import NavBar from "../Components/NavBar/NavBar";
-import MovieDetails from "../Components/MovieDetails/MovieDetails";
+import Details from "../Components/Details/Details";
 
 const DetailsPage = () => {
    return (
       <div>
          <NavBar />
-         <MovieDetails />
+         <Details />
       </div>
    );
 };

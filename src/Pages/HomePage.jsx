@@ -10,8 +10,8 @@ const HomePage = () => {
       <>
          <NavBar />
          <Banner />
-         <RowPost category={category.trending} />
-         <RowPost category={category.origin} isSmall />
+         <RowPost category={category.origin} />
+         <RowPost category={category.trending} isSmall />
          <RowPost category={category.action} />
          <RowPost category={category.romance} isSmall />
          <RowPost category={category.comedy} />

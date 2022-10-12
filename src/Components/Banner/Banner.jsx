@@ -35,7 +35,8 @@ const Banner = () => {
 
    const handleMovieDetails = (data) => {
       setDetails(data);
-      history.push("/details");
+      // history.push("/details");
+      history.push(`/details/${category.trending.id}/${data.id}`);
    };
 
    useEffect(() => {

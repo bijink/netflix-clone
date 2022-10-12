@@ -11,11 +11,14 @@ function RowPost({ category, isSmall }) {
    const { setDetails } = useContext(MovieDetailsContext);
 
    const { isLoading, data: movies } = useMoviesData(category.url, category.id);
-   // console.log(data.data.results);
+   // console.log(movies.data.results);
 
    const handleMovieDetails = (data) => {
       setDetails(data);
-      history.push("/details");
+
+      // console.log(data.id);
+      // history.push("/details");
+      history.push(`/details/${category.id}/${data.id}`);
    };
 
    return (

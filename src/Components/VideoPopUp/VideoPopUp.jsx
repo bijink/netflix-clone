@@ -50,7 +50,9 @@ const VideoPopUp = ({ banner, movieDetails }) => {
    useEffect(() => {
       if (movieDetails) {
          axios_instance
-            .get(`/movie/${movieDetails.id}/videos?language=en-US`)
+            // .get(`/movie/${movieDetails.id}/videos?language=en-US`)
+            // .get(`/movie/${movieDetails.id}/videos?append_to_response=videos`)
+            .get(`/movie/${movieDetails.id}/videos`)
             .then((response) => {
                if (response.data.results.length !== 0) {
                   setVideoDataLength(response.data.results.length);
