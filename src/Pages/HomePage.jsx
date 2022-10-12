@@ -9,7 +9,7 @@ const HomePage = () => {
    return (
       <>
          <NavBar />
-         <Banner url={category.trending.url} />
+         <Banner />
          <RowPost category={category.trending} />
          <RowPost category={category.origin} isSmall />
          <RowPost category={category.action} />

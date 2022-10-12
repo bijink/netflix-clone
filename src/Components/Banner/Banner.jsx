@@ -5,14 +5,18 @@ import { useHistory } from "react-router";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
 import { axios_instance } from "../../Utils/axios.utils";
 import { imgUrl } from "../../Data/constant.data";
+import { useMoviesData } from "../../Hooks";
+import { category } from "../../Data/category.data";
 
-const Banner = ({ url }) => {
+const Banner = () => {
    const history = useHistory();
 
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
    const { setDetails } = useContext(MovieDetailsContext);
 
    const [movieDetails, setMovieDetails] = useState();
+
+   const { data: movies } = useMoviesData(category.trending.url, "trending");
 
    const handleVideo = () => {
       axios_instance
@@ -36,12 +40,10 @@ const Banner = ({ url }) => {
 
    useEffect(() => {
       setVideoPopUpTrigger(false);
-      // TODO:: use staling (react-query)
-      axios_instance.get(url).then((response) => {
-         const index = Math.floor(Math.random() * response.data.results.length);
-         setMovieDetails(response.data.results[index]);
-      });
-   }, [url, setVideoPopUpTrigger]);
+
+      const index = Math.floor(Math.random() * movies?.data.results.length);
+      setMovieDetails(movies?.data.results[index]);
+   }, [movies, setVideoPopUpTrigger]);
 
    return (
       <div

@@ -12,19 +12,12 @@ const MovieDetails = () => {
    const { details } = useContext(MovieDetailsContext);
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
-   // const [movieDetails] = useState(details);
-   //
-   // getting stored movieDetails data from localStorage and setting to state
-   // const [movieDetails] = useState((details.length !== 0) ? details : JSON.parse(localStorage.getItem("netflix_movie_details")));
-   //
-   // getting stored movieDetails data from cookies and setting to state
-   // const [movieDetails] = useState((details.length !== 0) ? details : (cookies.movie_details));
-   //
-   // getting stored movieDetails data from sessionStorage and setting to state
+   // #getting stored movieDetails data from sessionStorage and setting to state
    const [movieDetails] = useState(
       details.length !== 0 ? details : JSON.parse(sessionStorage.getItem("netflix_movie_details"))
    );
 
+   // #to close videoPopUp instead of going back to home page, when browser backBtn is clicked
    window.onpopstate = function () {
       videoPopUpTrigger && history.goForward();
    };
@@ -47,20 +40,18 @@ const MovieDetails = () => {
    useEffect(() => {
       setVideoPopUpTrigger(false);
 
-      // storing movieDetails data to browser localStorage
-      // ((details.length !== 0)) && (localStorage.setItem("netflix_movie_details", JSON.stringify(movieDetails)));
-      //
-      // storing movieDetails data to browser cookies
-      // ((details.length !== 0)) && (setCookie('movie_details', details, { path: '/' }));
-      //
-      // storing movieDetails data to browser sessionStorage
+      // #storing movieDetails data to browser sessionStorage
       details.length !== 0 && sessionStorage.setItem("netflix_movie_details", JSON.stringify(movieDetails));
    }, [setVideoPopUpTrigger, details, movieDetails]);
+
+   // if(isLoading) return <h5>Loading...</h5>
 
    return (
       <div
          className="parentDivMovieDetails"
-         style={{ backgroundImage: `url(${imgUrl.w_og + movieDetails.backdrop_path})` }}
+         style={{
+            backgroundImage: `url(${imgUrl.w_og + (movieDetails.backdrop_path ?? movieDetails.poster_path)})`,
+         }}
       >
          <div className="shadeDiv">
             <div className="flex-div"></div>
