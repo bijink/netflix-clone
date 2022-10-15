@@ -7,6 +7,7 @@ import { axios_instance } from "../../Utils/axios.utils";
 import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
 import { category } from "../../Data/category.data";
+import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
 
 const Banner = () => {
    const history = useHistory();
@@ -14,15 +15,17 @@ const Banner = () => {
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
    const { setDetails } = useContext(MovieDetailsContext);
 
-   const [movieDetails, setMovieDetails] = useState();
+   const [movieDetails, setMovieDetails] = useState({});
+   const [movieVideos, setMovieVideos] = useState([]);
 
    const { data: movies } = useMoviesData(category.trending.url, "trending");
 
    const handleVideo = () => {
       axios_instance
          .get(`/movie/${movieDetails.id}/videos?language=en-US`)
-         .then((response) => {
-            if (response.data.results.length !== 0) {
+         .then((res) => {
+            if (res?.data?.results.length > 0) {
+               setMovieVideos(res.data.results.reverse());
                setVideoPopUpTrigger(true);
             } else {
                alert("Sorry, There is no video available");
@@ -33,10 +36,12 @@ const Banner = () => {
          });
    };
 
-   const handleMovieDetails = (data) => {
-      setDetails(data);
-      // history.push("/details");
-      history.push(`/details/${category.trending.id}/${data.id}`);
+   const handleMovieDetails = async (movie) => {
+      setDetails(movie);
+
+      sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
+
+      history.push("/details");
    };
 
    useEffect(() => {
@@ -50,7 +55,7 @@ const Banner = () => {
       <div
          className="banner"
          style={{
-            backgroundImage: `url(${movieDetails ? imgUrl.w_og + movieDetails.backdrop_path : ""})`,
+            backgroundImage: movieDetails?.backdrop_path && `url(${imgUrl.w_og + movieDetails.backdrop_path})`,
          }}
       >
          <div className="fade_content">
@@ -69,7 +74,7 @@ const Banner = () => {
             </div>
          </div>
          <div className="fade_bottom"></div>
-         {videoPopUpTrigger && <VideoPopUp banner movieDetails={movieDetails} />}
+         {videoPopUpTrigger && <VideoPopUp banner b_movieVideos={movieVideos} />}
       </div>
    );
 };

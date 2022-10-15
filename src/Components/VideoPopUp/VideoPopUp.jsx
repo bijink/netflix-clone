@@ -1,99 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./VideoPopUp.scss";
 import { useContext } from "react";
 import { VideoPopUpContext } from "../../Context";
 import ReactPlayer from "react-player/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import { axios_instance } from "../../Utils/axios.utils";
 
-const VideoPopUp = ({ banner, movieDetails }) => {
+const VideoPopUp = ({ banner, b_movieVideos }) => {
    const { setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
-   const [videoData, setVideoData] = useState();
-   const [videoDataLength, setVideoDataLength] = useState();
+   const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("netflix_temp_m_data")));
+
+   const [videoData] = useState(banner ? b_movieVideos : movieDetails?.video_list);
+   const [videoDataLength] = useState(videoData?.length);
    const [count, setCount] = useState(0);
-   const [videoDataIndex, setVideoDataIndex] = useState();
-   const [playlistOrNot, setPlaylistOrNot] = useState(false);
    const [showPlayList, setShowPlayList] = useState(false);
-   const [playlistOrderClick, setPlaylistOrderClick] = useState(false);
-   const [playlistDateOrderArrowCheck, setPlaylistDateOrderArrowCheck] = useState(false);
+   const [playlistOrder, setPlaylistOrder] = useState(false);
 
    const handlePlaylistVideo = (item) => {
-      // To check the condition
-      setPlaylistOrNot(true);
-
       videoData.forEach((data) => {
          if (data === item) {
-            setVideoDataIndex(videoData.indexOf(data));
+            setCount(videoData.indexOf(data));
          }
       });
    };
 
-   const handleVideoCount = (prevOrNext) => {
-      if (prevOrNext === "prev") {
-         setCount(count === 0 ? videoDataLength - 1 : count - 1);
-      } else if (prevOrNext === "next") {
-         setCount(count < videoDataLength - 1 && count + 1);
-      }
+   const handlePlaylistOrder = () => {
+      videoData.reverse();
+      setCount(0);
+      setPlaylistOrder((prev) => !prev);
    };
 
-   useEffect(() => {
-      playlistOrNot && setCount(videoDataIndex);
-      if (playlistOrderClick) {
-         setPlaylistOrderClick(!playlistOrderClick);
-         videoData.reverse();
-      }
-      playlistOrderClick && setPlaylistDateOrderArrowCheck(!playlistDateOrderArrowCheck);
-   }, [playlistOrNot, videoDataIndex, playlistOrderClick, playlistDateOrderArrowCheck, videoData]);
-
-   useEffect(() => {
-      if (movieDetails) {
-         axios_instance
-            // .get(`/movie/${movieDetails.id}/videos?language=en-US`)
-            // .get(`/movie/${movieDetails.id}/videos?append_to_response=videos`)
-            .get(`/movie/${movieDetails.id}/videos`)
-            .then((response) => {
-               if (response.data.results.length !== 0) {
-                  setVideoDataLength(response.data.results.length);
-                  setVideoData(response.data.results.reverse());
-               } else {
-                  alert("Sorry, There is no video available");
-               }
-            })
-            .catch((err) => {
-               err && alert("Sorry, There is no video available");
-            });
-      }
-   }, [movieDetails]);
+   const handleVideoCount = (prevOrNext) => {
+      if (prevOrNext === "prev") setCount((count) => --count);
+      else if (prevOrNext === "next") setCount((count) => ++count);
+   };
 
    return (
       <>
          <div className={`videoBgShade_${banner ? "banner" : "movieDetails"}`}>
-            <div className="videoFrame">
-               <ReactPlayer
-                  url={`https://www.youtube.com/watch?v=${videoData && videoData[count].key}`}
-                  width="100%"
-                  height="100%"
-                  controls
-                  playing
-                  onEnded={() => setCount(count < videoDataLength - 1 && count + 1)}
-               />
-            </div>
+            {/* video_player */}
+            {videoData && (
+               <div className="videoFrame">
+                  <ReactPlayer
+                     url={`https://www.youtube.com/watch?v=${videoData[count]?.key}`}
+                     width="100%"
+                     height="100%"
+                     controls
+                     playing
+                     onEnded={() => count < videoDataLength - 1 && setCount((count) => ++count)}
+                  />
+               </div>
+            )}
 
+            {/* side_video_playlist */}
             <div
                className="videoPlayListContainer"
                style={{ transform: `${showPlayList ? "translateX(0%)" : "translateX(100%)"}` }}
             >
-               <div className="semiCircleBtn" onClick={() => setShowPlayList(!showPlayList)}>
+               <div className="semiCircleBtn" onClick={() => setShowPlayList((prev) => !prev)}>
                   <FontAwesomeIcon className="arrowLeftRight" icon={showPlayList ? faAnglesRight : faAnglesLeft} />
                </div>
 
                <div className="videoPlayList">
                   <div className="playlistHeader">
                      <h3 className="playlistHeader_title">Video Playlist</h3>
-                     <button className="video_dateOrderBtn" onClick={() => setPlaylistOrderClick(true)}>
-                        Latest <FontAwesomeIcon icon={playlistDateOrderArrowCheck ? faArrowUp : faArrowDown} />
+                     <button className="video_dateOrderBtn" onClick={() => handlePlaylistOrder()}>
+                        Latest <FontAwesomeIcon icon={playlistOrder ? faArrowUp : faArrowDown} />
                      </button>
                   </div>
                   {videoData &&
@@ -127,25 +100,24 @@ const VideoPopUp = ({ banner, movieDetails }) => {
                </div>
             </div>
 
-            {!(count === 0) && (
+            {/* video_control_btns */}
+            {count > 0 && (
                <i
                   className="videoBackBtn fas fa-chevron-circle-left"
                   onClick={() => {
-                     setPlaylistOrNot(false);
                      handleVideoCount("prev");
                   }}
                ></i>
             )}
-            {!(count === videoDataLength - 1) && (
+            {count < videoDataLength - 1 && (
                <i
                   className="videoNextBtn fas fa-chevron-circle-right"
                   onClick={() => {
-                     setPlaylistOrNot(false);
                      handleVideoCount("next");
                   }}
                ></i>
             )}
-
+            {/* video_close_btn */}
             <div className="closeBtn">
                <i
                   onClick={() => {
