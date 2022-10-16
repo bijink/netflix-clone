@@ -1,7 +1,7 @@
 import { axios_instance } from "./axios.utils";
 
 export const fetchMovieDetails = async (movie) => {
-   // #fetch movieVideosData and return movieDetails by merging movieVidoes init
+   // *fetch movieVideosData and return movieDetails by merging movieVidoes init
    return axios_instance
       .get(`/movie/${movie.id}/videos`)
       .then((res) => {
