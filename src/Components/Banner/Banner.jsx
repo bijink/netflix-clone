@@ -7,6 +7,7 @@ import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
 import { category } from "../../Data/category.data";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Banner = () => {
    const history = useHistory();
@@ -15,6 +16,7 @@ const Banner = () => {
 
    const [movieDetails, setMovieDetails] = useState({});
    const [movieVideos, setMovieVideos] = useState([]);
+   const [isFetchHasWorstDelay, setIsFetchHasWorstDelay] = useState(false);
 
    const { data: movies, isLoading } = useMoviesData(category.trending.url, "banner");
 
@@ -25,10 +27,24 @@ const Banner = () => {
    };
 
    useEffect(() => {
+      // #to disable/anable body(screen) scrollbar
+      isLoading ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "visible");
+      // #to show a message on worst network on initial fetch
+      isLoading &&
+         setTimeout(() => {
+            setIsFetchHasWorstDelay(true);
+         }, 20 * 1000); // #20 seconds
+   }, [isLoading]);
+
+   useEffect(() => {
+      // #store movies to sessionStorage from the initial fetch
+      movies && sessionStorage.setItem("netflix_banner_query_data", JSON.stringify(movies));
+      // #to show random movieDetails on banner
       const index = Math.floor(Math.random() * movies?.data.results.length);
       setMovieDetails(movies?.data.results[index]);
-
+      // #pass movieVideos array to videoPopUp component
       setMovieVideos(movies?.data.results[index].video_list);
+      // #to turn off videoPopUp when pressing browser backBtn from details page(when with history.forword())
       setVideoPopUpTrigger(false);
    }, [movies, setVideoPopUpTrigger]);
 
@@ -39,7 +55,20 @@ const Banner = () => {
             backgroundImage: movieDetails?.backdrop_path && `url(${imgUrl.w_og + movieDetails.backdrop_path})`,
          }}
       >
-         {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+         {/* banner_loading_screen */}
+         {isLoading && (
+            <div className="banner__loading__screen">
+               <div className="banner__loading__screen--main">
+                  <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />
+                  {isFetchHasWorstDelay && (
+                     <p className="loading__screen--message">
+                        <span>I think we have a slower network </span>
+                        <span>Please wait...</span>
+                     </p>
+                  )}
+               </div>
+            </div>
+         )}
          <div className="fade_content">
             {!isLoading && (
                <div className="content">

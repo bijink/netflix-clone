@@ -6,6 +6,29 @@
    color: white;
    display: flex;
    flex-direction: column;
+   position: relative;
+   .banner__loading__screen {
+      position: absolute;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.9);
+      width: 100%;
+      height: 200vh;
+      &--main {
+         position: absolute;
+         top: 20%;
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         .loading__screen--message {
+            margin-top: 2rem;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+         }
+      }
+   }
    .fade_content {
       height: 100vh;
       background-image: linear-gradient(90deg, rgb(8, 8, 8), transparent, transparent);
@@ -57,7 +80,7 @@
       }
    }
    .fade_bottom {
-      $fade_b_height: 8rem;
+      $fade_b_height: 15rem;
       height: $fade_b_height;
       width: 100%;
       background-image: linear-gradient(180deg, transparent, rgb(8, 8, 8));
@@ -66,11 +89,23 @@
    }
 }
 
+@media screen and (min-width: 1700px) {
+   .banner {
+      $banner_height: 55rem;
+      height: $banner_height;
+      .fade_bottom {
+         $fade_b_height: 15rem;
+         height: $fade_b_height;
+         top: $banner_height - $fade_b_height + 0.05rem;
+      }
+   }
+}
 @media screen and (max-width: 1000px) {
    .banner {
       $banner_height: 35rem;
       height: $banner_height;
       .fade_content {
+         height: 0;
          .content {
             height: 27rem;
             display: flex;
@@ -89,7 +124,7 @@
          }
       }
       .fade_bottom {
-         $fade_b_height: 8rem;
+         $fade_b_height: 10rem;
          height: $fade_b_height;
          top: $banner_height - $fade_b_height + 0.05rem;
       }

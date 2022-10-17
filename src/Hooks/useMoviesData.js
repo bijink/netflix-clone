@@ -7,20 +7,9 @@ export const useMoviesData = (url, keyID) => {
       ["movie-data", keyID],
       async () => {
          if (keyID === "banner") {
-            // ?:
-            // const fetchData = await axios_instance.get(`${url}&page=${page}`);
-            // // console.log("fetch_m", fetchData);
-            // const fetchData_results = fetchData?.data?.results;
-            // // console.log("old_m", movies);
-
-            // const moviesData = [];
-            // for (let i = 0; i < fetchData_results.length; i++) {
-            //    await fetchMovieDetails(fetchData_results[i]).then((res) => {
-            //       if (res.video) moviesData.push(res);
-            //    });
-            // }
-            // // console.log("new_m", moviesData);
-            // ?:
+            // #*to return the stored banner data(from sessionStorage) for improving performance
+            const bannerFetchData = JSON.parse(sessionStorage.getItem("netflix_banner_query_data"));
+            if (bannerFetchData) return bannerFetchData;
 
             let page = 1;
             let moviesData_limit = 15;

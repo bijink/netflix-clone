@@ -1,11 +1,13 @@
 .row {
-   margin-left: 30px;
+   $poster_row_common_margin: 30px;
+   margin-left: $poster_row_common_margin;
    color: #fff;
    transform: translateY(-8rem);
-   .posters {
+   .poster__row {
+      $poster_width: 150px;
       display: flex;
-      margin-left: -30px;
-      padding-top: 10px;
+      margin-left: -$poster_row_common_margin;
+      padding-top: 15px;
       padding-bottom: 25px;
       overflow-x: scroll;
       overflow-y: hidden;
@@ -13,28 +15,46 @@
       &::-webkit-scrollbar {
          display: none;
       }
-      .poster,
-      .smallPoster {
+      .poster__lg {
+         min-width: $poster_width;
+      }
+      .poster__sm {
+         min-width: $poster_width - 20;
+      }
+      .poster__lg,
+      .poster__sm {
+         $poster_border_radius: 5px;
          margin-right: 10px;
          cursor: pointer;
          transition-duration: 400ms;
-         border-radius: 2.5px;
+         position: relative;
          &:first-child {
-            margin-left: 30px;
+            margin-left: $poster_row_common_margin;
          }
          &:last-child {
-            margin-right: 30px;
+            margin-right: $poster_row_common_margin;
          }
          &:hover {
             transform: scale(1.1);
             transition-duration: 400ms;
          }
-      }
-      .poster {
-         max-height: 220px;
-      }
-      .smallPoster {
-         max-height: 180px;
+         &--img {
+            border-radius: $poster_border_radius;
+            width: 100%;
+            height: 100%;
+         }
+         .poster__loading__div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: $poster_border_radius;
+            background-color: rgba(80, 80, 80, 0.8);
+            box-shadow: 0 0 30px 20px rgb(18, 18, 18) inset;
+         }
       }
    }
 }
@@ -47,23 +67,26 @@
 
 @media screen and (max-width: 580px) {
    .row {
-      margin-left: 20px;
-      .posters {
-         margin-left: -20px;
-         .poster,
-         .smallPoster {
+      $poster_row_common_margin: 20px;
+      margin-left: $poster_row_common_margin;
+      .poster__row {
+         $poster_width: 100px;
+         margin-left: -$poster_row_common_margin;
+         .poster__lg {
+            min-width: $poster_width;
+         }
+         .poster__sm {
+            min-width: $poster_width - 10;
+         }
+         .poster__lg,
+         .poster__sm {
+            $poster_border_radius: 5px;
             &:first-child {
-               margin-left: 20px;
+               margin-left: $poster_row_common_margin;
             }
             &:last-child {
-               margin-right: 20px;
+               margin-right: $poster_row_common_margin;
             }
-         }
-         .poster {
-            max-height: 150px;
-         }
-         .smallPoster {
-            max-height: 120px;
          }
       }
    }

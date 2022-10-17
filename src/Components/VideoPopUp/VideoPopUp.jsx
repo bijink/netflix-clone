@@ -5,6 +5,7 @@ import { VideoPopUpContext } from "../../Context";
 import ReactPlayer from "react-player/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const VideoPopUp = ({ banner, b_movieVideos }) => {
    const { setVideoPopUpTrigger } = useContext(VideoPopUpContext);
@@ -16,6 +17,7 @@ const VideoPopUp = ({ banner, b_movieVideos }) => {
    const [count, setCount] = useState(0);
    const [showPlayList, setShowPlayList] = useState(false);
    const [playlistOrder, setPlaylistOrder] = useState(false);
+   const [isInitialVideoReady, setIsInitialVideoReady] = useState(false);
 
    const handlePlaylistVideo = (item) => {
       videoData.forEach((data) => {
@@ -42,13 +44,28 @@ const VideoPopUp = ({ banner, b_movieVideos }) => {
             {/* video_player */}
             {videoData && (
                <div className="videoFrame">
+                  <BeatLoader
+                     color="rgba(255, 255, 255, 0.8)"
+                     loading={!isInitialVideoReady}
+                     speedMultiplier={1.2}
+                     size={10}
+                     aria-label="Loading Spinner"
+                     cssOverride={{
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                     }}
+                  />
                   <ReactPlayer
                      url={`https://www.youtube.com/watch?v=${videoData[count]?.key}`}
                      width="100%"
                      height="100%"
                      controls
                      playing
+                     onReady={() => setIsInitialVideoReady(true)}
                      onEnded={() => count < videoDataLength - 1 && setCount((count) => ++count)}
+                     onError={() => count < videoDataLength - 1 && setCount((count) => ++count)}
                   />
                </div>
             )}

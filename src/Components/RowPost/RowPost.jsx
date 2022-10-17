@@ -1,81 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RowPost.scss";
 import { useHistory } from "react-router-dom";
 import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function RowPost({ category, w_sm }) {
    const history = useHistory();
 
    const { isLoading, data: movies } = useMoviesData(category.url, category.id);
 
-   // const [loading, setLoading] = useState({ value: false, movieId: "" });
+   const [loading, setLoading] = useState({ value: false, movieId: "" });
 
    const handleMovieDetails = async (movie) => {
-      // setLoading({ value: true, movieId: movie.id });
+      setLoading({ value: true, movieId: movie.id });
 
       sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
 
-      // setLoading({ value: false, movieId: "" });
+      setLoading({ value: false, movieId: "" });
 
       history.push("/details");
    };
 
-   return (
-      <div className="row">
-         <h2 className="heading">{category.title}</h2>
-         <div className="posters">
-            {isLoading && <h5>Loading...</h5>}
-            {movies?.data.results.map((obj) => (
-               <img
-                  onClick={() => handleMovieDetails(obj)}
-                  key={obj.id}
-                  className={w_sm ? "smallPoster" : "poster"}
-                  src={imgUrl.w_200 + obj.poster_path}
-                  // src={isLoading ? "/favicon.ico" : imgUrl.w_200 + obj.poster_path}
-                  // src="/favicon.ico"
-                  alt="Poster"
-               />
-
-               // TODO:: loading indication when clicking for a movieDetails
-               // <div
-               //    onClick={() => handleMovieDetails(obj)}
-               //    key={obj.id}
-               //    style={{ backgroundColor: "red", position: "relative" }}
-               //    className={w_sm ? "smallPoster" : "poster"}
-               // >
-               //    {loading.value && loading.movieId === obj.id && (
-               //       <div
-               //          style={{
-               //             backgroundColor: "#00ff0055",
-               //             position: "absolute",
-               //             width: "100%",
-               //             height: "100%",
-               //          }}
-               //       >
-               //          {loading.value && loading.movieId === obj.id && (
-               //             <h4
-               //                style={{
-               //                   backgroundColor: "blue",
-               //                   position: "absolute",
-               //                   top: "50%",
-               //                   left: "50%",
-               //                   transform: "translate(-50%, -50%)",
-               //                }}
-               //             >
-               //                Loading
-               //             </h4>
-               //          )}
-               //       </div>
-               //    )}
-
-               //    <img src={imgUrl.w_200 + obj.poster_path} style={{ height: "220px" }} alt="" />
-               // </div>
-            ))}
+   if (!isLoading) {
+      return (
+         <div className="row">
+            <h2 className="heading">{category.title}</h2>
+            <div className="poster__row">
+               {movies?.data.results.map((obj) => (
+                  <div
+                     key={obj.id}
+                     className={w_sm ? "poster__sm" : "poster__lg"}
+                     onClick={() => handleMovieDetails(obj)}
+                  >
+                     <img
+                        src={imgUrl.w_200 + obj.poster_path}
+                        className="poster__sm--img poster__lg--img"
+                        alt={obj.name ?? obj.title}
+                     />
+                     {loading.value && loading.movieId === obj.id && (
+                        <div className="poster__loading__div">
+                           <BeatLoader
+                              color="rgb(0, 0, 0)"
+                              speedMultiplier={1}
+                              size={5}
+                              aria-label="Loading Spinner"
+                           />
+                        </div>
+                     )}
+                  </div>
+               ))}
+            </div>
          </div>
-      </div>
-   );
+      );
+   }
+
+   return null;
 }
 
 export default RowPost;
