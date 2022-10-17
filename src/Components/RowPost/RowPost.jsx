@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./RowPost.scss";
 import { useHistory } from "react-router-dom";
-import { MovieDetailsContext } from "../../Context";
 import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
@@ -9,16 +8,12 @@ import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
 function RowPost({ category, w_sm }) {
    const history = useHistory();
 
-   const { setDetails } = useContext(MovieDetailsContext);
-
    const { isLoading, data: movies } = useMoviesData(category.url, category.id);
 
    // const [loading, setLoading] = useState({ value: false, movieId: "" });
 
    const handleMovieDetails = async (movie) => {
       // setLoading({ value: true, movieId: movie.id });
-
-      setDetails(movie);
 
       sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
 

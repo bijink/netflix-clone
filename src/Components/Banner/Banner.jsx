@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Banner.scss";
-import { MovieDetailsContext, VideoPopUpContext } from "../../Context";
+import { VideoPopUpContext } from "../../Context";
 import { useHistory } from "react-router";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
 import { imgUrl } from "../../Data/constant.data";
@@ -12,7 +12,6 @@ const Banner = () => {
    const history = useHistory();
 
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
-   const { setDetails } = useContext(MovieDetailsContext);
 
    const [movieDetails, setMovieDetails] = useState({});
    const [movieVideos, setMovieVideos] = useState([]);
@@ -20,8 +19,6 @@ const Banner = () => {
    const { data: movies, isLoading } = useMoviesData(category.trending.url, "banner");
 
    const handleMovieDetails = async (movie) => {
-      setDetails(movie);
-
       sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
 
       history.push("/details");
