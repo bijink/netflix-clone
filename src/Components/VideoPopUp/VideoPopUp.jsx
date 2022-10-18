@@ -69,7 +69,34 @@ const VideoPopUp = ({ banner, b_movieVideos }) => {
                   />
                </div>
             )}
-
+            {/* videoPopUp_control_btns */}
+            <div className="videoControlBtns">
+               {count > 0 && (
+                  <FontAwesomeIcon
+                     icon="fa-solid fa-circle-chevron-left"
+                     className="videoBackBtn"
+                     onClick={() => {
+                        handleVideoCount("prev");
+                     }}
+                  />
+               )}
+               <FontAwesomeIcon
+                  icon="fa-solid fa-circle-xmark"
+                  className="videoCloseBtn"
+                  onClick={() => {
+                     setVideoPopUpTrigger(false);
+                  }}
+               />
+               {count < videoDataLength - 1 && (
+                  <FontAwesomeIcon
+                     icon="fa-solid fa-circle-chevron-right"
+                     className="videoNextBtn"
+                     onClick={() => {
+                        handleVideoCount("next");
+                     }}
+                  />
+               )}
+            </div>
             {/* side_video_playlist */}
             <div
                className="videoPlayListContainer"
@@ -115,33 +142,6 @@ const VideoPopUp = ({ banner, b_movieVideos }) => {
                         </div>
                      ))}
                </div>
-            </div>
-
-            {/* video_control_btns */}
-            {count > 0 && (
-               <i
-                  className="videoBackBtn fas fa-chevron-circle-left"
-                  onClick={() => {
-                     handleVideoCount("prev");
-                  }}
-               ></i>
-            )}
-            {count < videoDataLength - 1 && (
-               <i
-                  className="videoNextBtn fas fa-chevron-circle-right"
-                  onClick={() => {
-                     handleVideoCount("next");
-                  }}
-               ></i>
-            )}
-            {/* video_close_btn */}
-            <div className="closeBtn">
-               <i
-                  onClick={() => {
-                     setVideoPopUpTrigger(false);
-                  }}
-                  className="fas fa-times-circle"
-               ></i>
             </div>
          </div>
       </>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Assets/Fonts/fontAwesomeIcons";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Route } from "react-router-dom";

@@ -4,6 +4,7 @@ import { VideoPopUpContext } from "../../Context";
 import VideoPopUp from "../VideoPopUp/VideoPopUp";
 import { useHistory } from "react-router-dom";
 import { imgUrl } from "../../Data/constant.data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Details = () => {
    const history = useHistory();
@@ -29,7 +30,9 @@ const Details = () => {
             <div className="flex-div"></div>
             <div className="movieContent">
                <div className="sidePoster">
-                  <img src={imgUrl.w_og + movieDetails?.poster_path} alt="Movie Poster" />
+                  {/* empty div to maintain the img space on load */}
+                  <div className="sideImg_loader"></div>
+                  <img className="sideImg" src={imgUrl.w_og + movieDetails?.poster_path} alt="Movie Poster" />
                </div>
                <div className="movieDetails">
                   <h1 className="title">{movieDetails?.name ?? movieDetails?.title}</h1>
@@ -40,8 +43,8 @@ const Details = () => {
                   <p>{movieDetails?.vote_average && `Rating (Avg) : ${movieDetails.vote_average} / 10`} </p>
                   <br />
                   {movieDetails?.video && (
-                     <button className="Teaser" onClick={() => setVideoPopUpTrigger(true)}>
-                        <i className="fab fa-youtube"></i>Watch videos
+                     <button className="teaserWatchBtn" onClick={() => setVideoPopUpTrigger(true)}>
+                        <FontAwesomeIcon className="youtubeIcon" icon="fa-brands fa-youtube" /> Watch
                      </button>
                   )}
                </div>

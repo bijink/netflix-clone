@@ -12,32 +12,38 @@
       .movieContent {
          display: flex;
          .sidePoster {
-            img {
+            .sideImg {
                margin: 6rem 3rem;
                max-width: 30vw;
                max-height: 70vh;
                border-radius: 0.15rem;
             }
+            .sideImg_loader {
+               width: 30vw;
+            }
          }
          .movieDetails {
             margin: 7rem 3rem 0 0;
             padding: 0 0 3rem 0;
-            .Teaser {
-               cursor: pointer;
-               font-size: medium;
-               font-weight: 500;
+            .teaserWatchBtn {
                display: flex;
                align-items: center;
-               background-color: transparent;
-               border: none;
                color: rgb(255, 255, 255);
+               outline: none;
+               border: none;
+               font-weight: 700;
+               border-radius: 5px;
+               padding: 4px 14px;
+               background-color: rgba(75, 75, 75, 0.5);
+               cursor: pointer;
                &:hover {
-                  color: rgb(196, 196, 196);
+                  color: black;
+                  background-color: rgba(255, 255, 255, 0.849);
                }
-               i {
+               .youtubeIcon {
                   color: orangered;
-                  font-size: x-large;
-                  margin: 0 0.3rem 0 0;
+                  font-size: medium;
+                  padding-right: 5px;
                }
             }
             .overview {
@@ -53,7 +59,7 @@
       .shadeDiv {
          .movieContent {
             .sidePoster {
-               img {
+               .sideImg {
                   margin: 6rem 2rem;
                }
             }
@@ -80,10 +86,13 @@
             display: flex;
             flex-direction: column;
             .sidePoster {
-               img {
+               .sideImg {
                   margin: 6rem 2rem 2rem;
                   max-width: 50vw;
                   border-radius: 0.15rem;
+               }
+               .sideImg_loader {
+                  max-width: 50vw;
                }
             }
             .movieDetails {

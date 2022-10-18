@@ -8,6 +8,7 @@ import { useMoviesData } from "../../Hooks";
 import { category } from "../../Data/category.data";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
 import PropagateLoader from "react-spinners/PropagateLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Banner = () => {
    const history = useHistory();
@@ -76,10 +77,10 @@ const Banner = () => {
                   <h1 className="title">{movieDetails ? movieDetails.title || movieDetails.name : ""}</h1>
                   <div className="banner_button">
                      <button className="button" onClick={() => setVideoPopUpTrigger(true)}>
-                        <i className="fas fa-play"></i> Play
+                        <FontAwesomeIcon icon="fa-solid fa-play" /> Play
                      </button>
                      <button className="button" onClick={() => handleMovieDetails(movieDetails)}>
-                        <i className="fas fa-info-circle"></i> More Info
+                        <FontAwesomeIcon icon="fa-solid fa-circle-info" /> More Info
                      </button>
                   </div>
                   <p className="description">{movieDetails ? movieDetails.overview : ""}</p>

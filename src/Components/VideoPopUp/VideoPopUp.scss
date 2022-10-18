@@ -1,3 +1,8 @@
+$primary_color_light: rgb(216, 31, 38); // #netflix logo color
+$primary_color_dark: rgb(160, 15, 20);
+$secondary_color_light: rgb(160, 160, 160);
+$secondary_color_dark: rgb(100, 100, 100);
+
 .videoBgShade_banner,
 .videoBgShade_movieDetails {
    width: 100%;
@@ -6,17 +11,47 @@
    top: 0;
    left: 0;
    z-index: 1;
+   background-color: rgba(0, 0, 0, 0.9);
    .videoFrame {
       width: 90%;
       height: 80vh;
       position: relative;
-      top: 47%;
-      right: 50%;
+      top: 45%;
       left: 50%;
+      right: 50%;
       transform: translate(-50%, -50%);
       border: solid 2px rgba(255, 255, 255, 0.25);
       border-radius: 0.3rem;
       background-color: rgb(0, 0, 0);
+   }
+   .videoControlBtns {
+      .videoCloseBtn,
+      .videoBackBtn,
+      .videoNextBtn {
+         position: absolute;
+         bottom: 5vh;
+         font-size: 2.5rem;
+         cursor: pointer;
+         color: $secondary_color_dark;
+         &:hover {
+            color: $secondary_color_light;
+         }
+      }
+      .videoCloseBtn {
+         left: 50vw;
+         right: 50vw;
+         transform: translate(-50%, 0%);
+         color: $primary_color_dark;
+         &:hover {
+            color: $primary_color_light;
+         }
+      }
+      .videoBackBtn {
+         left: 40vw;
+      }
+      .videoNextBtn {
+         right: 40vw;
+      }
    }
    .videoPlayListContainer {
       width: 25rem;
@@ -27,7 +62,7 @@
       transform: translateX(100%);
       transition: transform 700ms;
       .semiCircleBtn {
-         background-color: rgba(114, 114, 114, 0.507);
+         background-color: $secondary_color_dark;
          position: absolute;
          top: 50%;
          transform: translateY(-50%);
@@ -40,7 +75,7 @@
          align-items: center;
          cursor: pointer;
          &:hover {
-            background-color: rgba(114, 114, 114, 0.877);
+            background-color: $secondary_color_light;
          }
          .arrowLeftRight {
             margin: 0 0 0 0.7rem;
@@ -107,46 +142,6 @@
          }
       }
    }
-   .closeBtn {
-      position: absolute;
-      left: 50%;
-      bottom: 4.5vh;
-      z-index: -2;
-      i {
-         cursor: pointer;
-         font-size: 3rem;
-         color: rgba(255, 0, 0, 0.644);
-         position: relative;
-         left: -50%;
-         &:hover {
-            color: rgb(192, 0, 16);
-         }
-      }
-   }
-   .videoBackBtn,
-   .videoNextBtn {
-      z-index: -2;
-      position: absolute;
-      bottom: 5vh;
-      cursor: pointer;
-      font-size: 2.6rem;
-      color: rgba(255, 255, 255, 0.192);
-      &:hover {
-         color: rgba(255, 255, 255, 0.575);
-      }
-   }
-   .videoBackBtn {
-      left: 40vw;
-   }
-   .videoNextBtn {
-      right: 40vw;
-   }
-}
-.videoBgShade_banner {
-   background-color: rgba(0, 0, 0, 0.95);
-}
-.videoBgShade_movieDetails {
-   background-color: rgba(0, 0, 0, 0.85);
 }
 
 @media screen and (max-width: 1000px) {
@@ -155,6 +150,19 @@
       .videoFrame {
          width: 80%;
          height: 60vh;
+      }
+      .videoControlBtns {
+         .videoCloseBtn,
+         .videoBackBtn,
+         .videoNextBtn {
+            bottom: 10vh;
+         }
+         .videoBackBtn {
+            left: 35vw;
+         }
+         .videoNextBtn {
+            right: 35vw;
+         }
       }
       .videoPlayListContainer {
          .semiCircleBtn {
@@ -184,23 +192,6 @@
             }
          }
       }
-      .closeBtn {
-         bottom: 10vh;
-         i {
-            font-size: 3rem;
-         }
-      }
-      .videoBackBtn,
-      .videoNextBtn {
-         bottom: 10.5vh;
-         font-size: 2.5rem;
-      }
-      .videoBackBtn {
-         left: 35vw;
-      }
-      .videoNextBtn {
-         right: 35vw;
-      }
    }
 }
 
@@ -210,6 +201,19 @@
       .videoFrame {
          width: 90%;
          height: 30vh;
+      }
+      .videoControlBtns {
+         .videoCloseBtn,
+         .videoBackBtn,
+         .videoNextBtn {
+            bottom: 20vh;
+         }
+         .videoBackBtn {
+            left: 8vh;
+         }
+         .videoNextBtn {
+            right: 8vh;
+         }
       }
       .videoPlayListContainer {
          width: 85%;
@@ -244,25 +248,6 @@
                }
             }
          }
-      }
-      .closeBtn {
-         bottom: 20vh;
-         i {
-            font-size: 3rem;
-         }
-      }
-      .videoBackBtn,
-      .videoNextBtn {
-         font-size: 2.5rem;
-         position: absolute;
-         top: auto;
-         bottom: 20.5vh;
-      }
-      .videoBackBtn {
-         left: 8vh;
-      }
-      .videoNextBtn {
-         right: 8vh;
       }
    }
 }
