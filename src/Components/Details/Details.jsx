@@ -14,6 +14,13 @@ const Details = () => {
    // #getting stored movieDetails data from sessionStorage
    const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("netflix_temp_m_data")));
 
+   // #converts "YYYY-MM-DD" to "Mmm DD, YYYY"
+   const date = new Date(movieDetails?.release_date ?? movieDetails?.first_air_date)
+      .toString()
+      .slice(4, 15)
+      .split(" ");
+   const formatedDate = `${date[0]} ${date[1]}, ${date[2]}`;
+
    // #to close videoPopUp instead of going back to home page, when browser backBtn is clicked
    window.onpopstate = function () {
       videoPopUpTrigger && history.goForward();
@@ -30,8 +37,6 @@ const Details = () => {
             <div className="flex-div"></div>
             <div className="movieContent">
                <div className="sidePoster">
-                  {/* empty div to maintain the img space on load */}
-                  <div className="sideImg_loader"></div>
                   <img className="sideImg" src={imgUrl.w_og + movieDetails?.poster_path} alt="Movie Poster" />
                </div>
                <div className="movieDetails">
@@ -39,7 +44,10 @@ const Details = () => {
                   <br />
                   <p className="overview">{movieDetails?.overview}</p>
                   <br />
-                  <p>{movieDetails?.release_date && `Release Date : ${movieDetails.release_date}`} </p>
+                  <p>
+                     {(movieDetails?.release_date || movieDetails?.first_air_date) &&
+                        `Release Date : ${formatedDate}`}
+                  </p>
                   <p>{movieDetails?.vote_average && `Rating (Avg) : ${movieDetails.vote_average} / 10`} </p>
                   <br />
                   {movieDetails?.video && (

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./NavBar.scss";
 import { useHistory } from "react-router";
+import { useParams } from "react-router-dom";
+import { category } from "../../Data/category.data";
 
-function NavBar() {
+function NavBar({ details_page }) {
    const history = useHistory();
+   const { categoryID } = useParams();
 
    const [color, setColor] = useState("");
-   const [username, setUsername] = useState(() => {
-      // getting stored username data from localStorage
-      const saved = localStorage.getItem("Netflix_username");
-      const initialValue = JSON.parse(saved);
-      return initialValue || "";
-   });
+   const [hamburgerBtnClick, setHamburgerBtnClick] = useState(false);
+
+   const navMenuData = [category.trending, category.horror, category.drama, category.music, category.history];
 
    const listenScrollEvent = () => {
       if (window.scrollY > 50) {
@@ -21,57 +21,92 @@ function NavBar() {
       }
    };
 
-   const handleClick = () => {
-      if (username === "" || !username) {
-         const name = window.prompt("Please enter your name");
-         setUsername(name);
-      }
+   const handleCategoryClick = (category) => {
+      history.push(`/category/${category}`);
    };
 
    useEffect(() => {
       window.addEventListener("scroll", listenScrollEvent);
 
-      if (username === "") {
-         const name = window.prompt("Please enter your name");
-         setUsername(name);
-      }
-      // storing username data to localStorage of browser
-      localStorage.setItem("Netflix_username", JSON.stringify(username));
-
       return () => {
          setColor(" ");
       };
-   }, [username]);
+   }, []);
 
    return (
-      <div className="navBar" style={{ backgroundColor: color }}>
+      <div className="nav" style={{ backgroundColor: color }}>
          <img
-            className="logo"
+            className="nav__logo"
             onClick={() => history.push("/")}
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
             alt="Netflix Logo"
          />
-         <div className="avatar-div">
-            <img
-               className="avatar"
-               src="https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
-               alt="Avatar"
-               onClick={handleClick}
-            />
-            {username && (
-               <div className="userDetails">
-                  <h3 className="username">{username.charAt(0).toUpperCase() + username.slice(1)}</h3>
-                  <button
-                     className="logOutBtn"
-                     onClick={() => {
-                        setUsername(null);
-                     }}
-                  >
-                     Log Out
-                  </button>
+         {!details_page && (
+            <div className="nav__menu">
+               {navMenuData.map((cate, i) => {
+                  if (cate.id === "trending") {
+                     cate = { ...cate, title: "Trendings" };
+                  }
+                  return (
+                     <p
+                        key={i}
+                        style={
+                           cate.id === categoryID
+                              ? {
+                                   color: "rgba(255, 255, 255)",
+                                   backgroundColor: "rgba(255, 255, 255, 0.15)",
+                                }
+                              : {}
+                        }
+                        onClick={() => cate.id !== categoryID && handleCategoryClick(cate.id)}
+                     >
+                        {cate.title}
+                     </p>
+                  );
+               })}
+            </div>
+         )}
+         {/* Hamburger */}
+         {!details_page && (
+            <>
+               {/* Hamburger btn */}
+               <div
+                  className={`nav__hamburger ${hamburgerBtnClick && "nav__hamburger__open"}`}
+                  onClick={() => setHamburgerBtnClick((prev) => !prev)}
+               >
+                  <span className="nav__hamburger--top"></span>
+                  <span className="nav__hamburger--middle"></span>
+                  <span className="nav__hamburger--bottom"></span>
                </div>
-            )}
-         </div>
+               {/* Hamburger menu */}
+               <div
+                  className="nav__menu_sm"
+                  style={hamburgerBtnClick ? { top: 0, color: "rgba(255, 255, 255)" } : {}}
+               >
+                  {navMenuData.map((cate, i) => {
+                     if (cate.id === "trending") {
+                        cate = { ...cate, title: "Trendings" };
+                     }
+                     return (
+                        <p
+                           key={i}
+                           style={
+                              cate.id === categoryID && hamburgerBtnClick
+                                 ? {
+                                      color: "rgba(255, 255, 255)",
+                                      backgroundColor: "rgba(255, 255, 255, 0.15)",
+                                   }
+                                 : {}
+                           }
+                           onClick={() => cate.id !== categoryID && handleCategoryClick(cate.id)}
+                        >
+                           {cate.title}
+                        </p>
+                     );
+                  })}
+               </div>
+            </>
+         )}
       </div>
    );
 }

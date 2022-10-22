@@ -1,7 +1,7 @@
 .parentDivMovieDetails {
    background-size: cover;
    background-position: center;
-   color: white;
+   color: rgb(255, 255, 255);
    .shadeDiv {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.762);
@@ -11,20 +11,22 @@
       }
       .movieContent {
          display: flex;
+         flex-direction: row;
          .sidePoster {
+            padding: 14vh 0;
+            width: 35%;
             .sideImg {
-               margin: 6rem 3rem;
+               margin: 0 0 0 50%;
+               transform: translate(-50%, 0%);
+               padding-left: 2rem;
                max-width: 30vw;
                max-height: 70vh;
-               border-radius: 0.15rem;
-            }
-            .sideImg_loader {
-               width: 30vw;
+               border-radius: 0.2rem;
             }
          }
          .movieDetails {
-            margin: 7rem 3rem 0 0;
-            padding: 0 0 3rem 0;
+            width: 65%;
+            padding: 20vh 3rem 0;
             .teaserWatchBtn {
                display: flex;
                align-items: center;
@@ -58,20 +60,13 @@
    .parentDivMovieDetails {
       .shadeDiv {
          .movieContent {
-            .sidePoster {
-               .sideImg {
-                  margin: 6rem 2rem;
-               }
-            }
             .movieDetails {
-               .title {
-                  margin-top: 2rem;
-               }
+               padding-top: 14vh;
                .overview {
-                  padding: 1rem 2rem;
                   position: absolute;
-                  margin: 33vw 0 0;
                   left: 0rem;
+                  top: 70vh;
+                  padding: 0rem 2rem;
                }
             }
          }
@@ -85,24 +80,30 @@
          .movieContent {
             display: flex;
             flex-direction: column;
+            padding: 0 1.5rem;
             .sidePoster {
+               width: 100%;
+               padding: 4rem 0 3rem;
                .sideImg {
-                  margin: 6rem 2rem 2rem;
                   max-width: 50vw;
-                  border-radius: 0.15rem;
+                  padding-left: 0;
+                  margin: 0;
+                  transform: none;
                }
                .sideImg_loader {
                   max-width: 50vw;
                }
             }
             .movieDetails {
-               margin: 0 2rem;
+               width: 100%;
+               padding: 0;
+               padding-bottom: 2rem;
                .title {
                   margin-top: 0;
                }
                .overview {
-                  padding: 0;
                   position: static;
+                  padding: 0;
                   margin: 0;
                }
             }

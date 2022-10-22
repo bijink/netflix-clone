@@ -8,24 +8,24 @@ import { category } from "../Data/category.data";
 const HomePage = () => {
    const categoryList = [
       category.trending,
-      category.tv,
       category.origin,
       category.fiction,
       category.action,
       category.romance,
       category.animation,
       category.horror,
+      category.drama,
       category.comedy,
       category.adventure,
       category.music,
       category.documentary,
+      category.history,
       // ~:
       // category.crime,
-      // category.drama,
       // category.family,
       // category.fantasy,
-      // category.history,
       // category.mystery,
+      // category.tv,
       // category.thriller,
       // category.war,
       // category.western,
@@ -39,7 +39,7 @@ const HomePage = () => {
             if (i % 2 === 0) return <RowPost key={i} category={cate} />;
             return <RowPost key={i} category={cate} w_sm />;
          })}
-         <Footer />
+         <Footer home_page />
       </>
    );
 };

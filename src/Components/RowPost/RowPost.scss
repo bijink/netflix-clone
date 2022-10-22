@@ -80,12 +80,15 @@
          }
          .poster__lg,
          .poster__sm {
-            $poster_border_radius: 5px;
+            $poster_border_radius: 3px;
             &:first-child {
                margin-left: $poster_row_common_margin;
             }
             &:last-child {
                margin-right: $poster_row_common_margin;
+            }
+            &--img {
+               border-radius: $poster_border_radius;
             }
          }
       }

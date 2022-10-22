@@ -5,7 +5,7 @@ import Details from "../Components/Details/Details";
 const DetailsPage = () => {
    return (
       <div>
-         <NavBar />
+         <NavBar details_page />
          <Details />
       </div>
    );

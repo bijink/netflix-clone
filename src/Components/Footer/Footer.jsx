@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import "./Footer.scss";
 
-function Footer() {
+function Footer({ home_page }) {
    return (
-      <div className="footer">
+      <div className="footer" style={home_page && { marginTop: "-5rem" }}>
          <div className="footer__content">
             <p className="appName">Netflix Teasers (netflix-clone)</p>
             <p className="createdText">created by</p>
