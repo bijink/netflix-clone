@@ -23,10 +23,19 @@ function RowPost({ category, w_sm }) {
       history.push("/details");
    };
 
+   const handleSeeMoreBtn = () => {
+      history.push(`/category/${category.id}/1`);
+   };
+
    if (!isLoading) {
       return (
          <div className="row">
-            <h2 className="heading">{category.title}</h2>
+            <div className="heading">
+               <h2 className="heading--title">{category.title}</h2>
+               <button onClick={handleSeeMoreBtn} className="heading--seeMoreBtn">
+                  more
+               </button>
+            </div>
             <div className="poster__row">
                {movies?.data.results.map((obj) => (
                   <div

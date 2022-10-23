@@ -34,7 +34,7 @@ const Banner = () => {
       isLoading &&
          setTimeout(() => {
             setIsFetchHasWorstDelay(true);
-         }, 20 * 1000); // #20 seconds
+         }, 25 * 1000); // #25 seconds
    }, [isLoading]);
 
    useEffect(() => {

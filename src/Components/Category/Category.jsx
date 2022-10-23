@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useHistory, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
@@ -10,7 +11,10 @@ import "./Category.scss";
 
 const Category = () => {
    const history = useHistory();
-   const { categoryID } = useParams();
+   const { categoryID, page } = useParams();
+
+   const pageLimit = 20;
+   let [pageNum, setPageNum] = useState(1);
 
    let category = "";
    for (const key in categoryData) {
@@ -20,9 +24,20 @@ const Category = () => {
       }
    }
 
-   const { data: movies, isLoading } = useQuery(["movie-category", category.id], async () => {
-      return axios_instance.get(category.url);
+   const { data: movies, isLoading } = useQuery(["movie-category", category.id, page], async () => {
+      return axios_instance.get(`${category.url}&page=${page}`);
    });
+
+   const handlePage = (nextOrPrev) => {
+      if (pageNum > 1 && nextOrPrev === "prev") {
+         setPageNum(--pageNum);
+         history.push(`/category/${categoryID}/${pageNum}`);
+      }
+      if (pageNum < pageLimit && nextOrPrev === "next") {
+         setPageNum(++pageNum);
+         history.push(`/category/${categoryID}/${pageNum}`);
+      }
+   };
 
    const handleMovieDetails = async (movie) => {
       sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
@@ -30,25 +45,53 @@ const Category = () => {
       history.push("/details");
    };
 
-   return (
-      <div className="category">
-         {isLoading && (
-            <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />
-         )}
-         <div className="category__movies">
-            {movies?.data?.results?.map((movie, i) => (
-               <div className="category__movies--movie" key={i}>
-                  <img
-                     className="movie--img"
-                     src={imgUrl.w_200 + movie.poster_path}
-                     alt={movie.name ?? movie.title}
-                     onClick={() => handleMovieDetails(movie)}
-                  />
-               </div>
-            ))}
+   useEffect(() => {
+      setPageNum(page);
+   }, [page]);
+
+   if (isLoading) {
+      return (
+         <div className="category">
+            <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />;
          </div>
-      </div>
-   );
+      );
+   }
+   if (!isLoading) {
+      return (
+         <div className="category">
+            <p className="category__title">{category.title}</p>
+            <div className="category__movies">
+               {movies?.data?.results?.map((movie, i) => (
+                  <div className="category__movies--movie" key={i}>
+                     <img
+                        className="movie--img"
+                        src={imgUrl.w_200 + movie.poster_path}
+                        alt={movie.name ?? movie.title}
+                        onClick={() => handleMovieDetails(movie)}
+                     />
+                  </div>
+               ))}
+            </div>
+            <div className="category__paginationBtns">
+               <p
+                  className="page_nextBtn"
+                  style={{ textDecoration: pageNum > 1 ? "underline" : "none" }}
+                  onClick={() => handlePage("prev")}
+               >
+                  Prev
+               </p>
+               <p className="page_num">{page}</p>
+               <p
+                  className="page_prevBtn"
+                  style={{ textDecoration: pageNum < pageLimit ? "underline" : "none" }}
+                  onClick={() => handlePage("next")}
+               >
+                  Next
+               </p>
+            </div>
+         </div>
+      );
+   }
 };
 
 export default Category;

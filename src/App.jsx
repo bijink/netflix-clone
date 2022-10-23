@@ -16,7 +16,7 @@ function App() {
          <Router>
             <Route exact path="/" children={<HomePage />} />
             <Route path="/details" children={<DetailsPage />} />
-            <Route path="/category/:categoryID" children={<CategoryPage />} />
+            <Route path="/category/:categoryID/:page" children={<CategoryPage />} />
          </Router>
          <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

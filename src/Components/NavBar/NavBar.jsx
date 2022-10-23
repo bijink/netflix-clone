@@ -11,7 +11,7 @@ function NavBar({ details_page }) {
    const [color, setColor] = useState("");
    const [hamburgerBtnClick, setHamburgerBtnClick] = useState(false);
 
-   const navMenuData = [category.trending, category.horror, category.drama, category.music, category.history];
+   const navMenuData = [category.trending, category.tv, category.music, category.drama, category.history];
 
    const listenScrollEvent = () => {
       if (window.scrollY > 50) {
@@ -22,7 +22,7 @@ function NavBar({ details_page }) {
    };
 
    const handleCategoryClick = (category) => {
-      history.push(`/category/${category}`);
+      history.push(`/category/${category}/1`);
    };
 
    useEffect(() => {

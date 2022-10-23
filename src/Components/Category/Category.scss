@@ -1,15 +1,26 @@
 .category {
    $category_padding_top: 10vh;
-   color: rgb(255, 255, 255);
-   padding: $category_padding_top 20px;
-   min-height: 100vh - (2 * $category_padding_top);
+   padding: $category_padding_top 20px 0;
+   min-height: 100vh - $category_padding_top;
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
+   &__title {
+      color: white;
+      margin-right: auto;
+      font-size: 20px;
+      font-weight: 600;
+      padding-bottom: 0.5rem;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+   }
    &__movies {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      padding-top: 30px;
       &--movie {
          padding: 0.5rem;
          .movie--img {
@@ -22,6 +33,20 @@
                transition-duration: 400ms;
             }
          }
+      }
+   }
+   &__paginationBtns {
+      display: flex;
+      justify-content: center;
+      color: rgb(199, 199, 199);
+      padding: 2rem 0;
+      & > * {
+         margin: 0 5px;
+      }
+      .page_nextBtn,
+      .page_prevBtn {
+         color: rgb(0, 80, 255);
+         cursor: pointer;
       }
    }
 }

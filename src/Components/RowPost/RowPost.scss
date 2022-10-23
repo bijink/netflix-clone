@@ -3,6 +3,23 @@
    margin-left: $poster_row_common_margin;
    color: #fff;
    transform: translateY(-8rem);
+   .heading {
+      display: flex;
+      align-items: center;
+      &--seeMoreBtn {
+         cursor: pointer;
+         margin-left: 8px;
+         padding: 1px 2px;
+         border-radius: 3px;
+         border: none;
+         background-color: rgba(60, 60, 60, 1);
+         color: white;
+         &:hover {
+            color: black;
+            background-color: #e6e6e6;
+         }
+      }
+   }
    .poster__row {
       $poster_width: 150px;
       display: flex;
@@ -89,6 +106,9 @@
             }
             &--img {
                border-radius: $poster_border_radius;
+            }
+            .poster__loading__div {
+               border-radius: $poster_border_radius - 0.2px;
             }
          }
       }
