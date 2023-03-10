@@ -28,7 +28,7 @@ const Banner = () => {
    };
 
    useEffect(() => {
-      // #to disable/anable body(screen) scrollbar
+      // #to disable/enable body(screen) scrollbar
       isLoading ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "visible");
       // #to show a message on worst network on initial fetch
       isLoading &&

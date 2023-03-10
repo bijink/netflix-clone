@@ -8,12 +8,12 @@ function Footer({ home_page }) {
          <div className="footer__content">
             <p className="appName">Netflix Teasers (netflix-clone)</p>
             <p className="createdText">created by</p>
-            <a className="appAuthor" href="https://github.com/bijink" target="_blank" rel="noreferrer">
-               Bijin Kandengalath
+            <a className="appAuthor" href="https://bijink.github.io" target="_blank" rel="noreferrer">
+               Bijin Kandengala
             </a>
             <a
                className="githubIcon"
-               href="https://github.com/bijink/Netflix-clone"
+               href="https://github.com/bijink/netflix-teasers"
                target="_blank"
                rel="noreferrer"
             >
