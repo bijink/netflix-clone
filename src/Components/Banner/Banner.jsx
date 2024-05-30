@@ -19,33 +19,44 @@ const Banner = () => {
    const [movieVideos, setMovieVideos] = useState([]);
    const [isFetchHasWorstDelay, setIsFetchHasWorstDelay] = useState(false);
 
-   const { data: movies, isLoading } = useMoviesData(category.trending.url, "banner");
+   const { data: movies, isLoading, isError } = useMoviesData(category.trending.url, "banner");
 
    const handleMovieDetails = async (movie) => {
       sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
-
       history.push("/details");
    };
 
    useEffect(() => {
-      // #to disable/enable body(screen) scrollbar
-      isLoading ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "visible");
       // #to show a message on worst network on initial fetch
-      isLoading &&
-         setTimeout(() => {
-            setIsFetchHasWorstDelay(true);
-         }, 25 * 1000); // #25 seconds
-   }, [isLoading]);
+      const worstDelayTimer = setTimeout(() => {
+         if (isLoading) setIsFetchHasWorstDelay(true);
+      }, 25 * 1000); // #25 seconds
 
+      return () => {
+         clearTimeout(worstDelayTimer);
+      };
+   }, [isLoading]);
+   useEffect(() => {
+      if (isError) {
+         setIsFetchHasWorstDelay(false);
+         sessionStorage.setItem("netflix_banner_query_data", null);
+      }
+   }, [isError]);
+   useEffect(() => {
+      // #to disable/enable body(screen) scrollbar
+      isLoading || isError
+         ? (document.body.style.overflow = "hidden")
+         : (document.body.style.overflow = "visible");
+   }, [isLoading, isError]);
    useEffect(() => {
       // #store movies to sessionStorage from the initial fetch
       movies && sessionStorage.setItem("netflix_banner_query_data", JSON.stringify(movies));
       // #to show random movieDetails on banner
-      const index = Math.floor(Math.random() * movies?.data.results.length);
-      setMovieDetails(movies?.data.results[index]);
+      const index = Math.floor(Math.random() * movies?.data?.results?.length);
+      setMovieDetails(movies?.data?.results[index]);
       // #pass movieVideos array to videoPopUp component
-      setMovieVideos(movies?.data.results[index].video_list);
-      // #to turn off videoPopUp when pressing browser backBtn from details page(when with history.forword())
+      setMovieVideos(movies?.data?.results[index].video_list);
+      // #to turn off videoPopUp when pressing browser backBtn from details page(when with history.forward())
       setVideoPopUpTrigger(false);
    }, [movies, setVideoPopUpTrigger]);
 
@@ -56,16 +67,34 @@ const Banner = () => {
             backgroundImage: movieDetails?.backdrop_path && `url(${imgUrl.w_og + movieDetails.backdrop_path})`,
          }}
       >
-         {/* banner_loading_screen */}
-         {isLoading && (
-            <div className="banner__loading__screen">
-               <div className="banner__loading__screen--main">
-                  <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />
-                  {isFetchHasWorstDelay && (
-                     <p className="loading__screen--message">
-                        <span>I think we have a slower network </span>
-                        <span>Please wait...</span>
-                     </p>
+         {/* banner_blank_screen */}
+         {(isLoading || isError) && (
+            <div className="banner__blank__screen">
+               <div className="banner__blank__screen--main">
+                  {/* banner_loading_screen_content */}
+                  {isLoading && (
+                     <>
+                        <PropagateLoader
+                           color="rgb(192, 0, 16)"
+                           loading={isLoading}
+                           aria-label="Loading Spinner"
+                        />
+                        {isFetchHasWorstDelay && (
+                           <p className="blank__screen__loading--message">
+                              <span>I think we have a slower network </span>
+                              <span>Please wait...</span>
+                           </p>
+                        )}
+                     </>
+                  )}
+                  {/* banner_error_screen_content */}
+                  {isError && (
+                     <>
+                        <p className="blank__screen__error--message">
+                           <span>Error 504</span>
+                           <span>Gateway Timeout</span>
+                        </p>
+                     </>
                   )}
                </div>
             </div>
