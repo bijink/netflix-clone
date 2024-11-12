@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useHistory, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
@@ -35,6 +34,10 @@ const Category = () => {
       }
       if (pageNum < pageLimit && nextOrPrev === "next") {
          setPageNum(++pageNum);
+         window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+         });
          history.push(`/category/${categoryID}/${pageNum}`);
       }
    };
@@ -75,7 +78,7 @@ const Category = () => {
             <div className="category__paginationBtns">
                <p
                   className="page_nextBtn"
-                  style={{ textDecoration: pageNum > 1 ? "underline" : "none" }}
+                  style={{ textDecoration: pageNum > 1 ? "underline" : "none", cursor: pageNum < 2 && "default" }}
                   onClick={() => handlePage("prev")}
                >
                   Prev
@@ -83,7 +86,10 @@ const Category = () => {
                <p className="page_num">{page}</p>
                <p
                   className="page_prevBtn"
-                  style={{ textDecoration: pageNum < pageLimit ? "underline" : "none" }}
+                  style={{
+                     textDecoration: pageNum < pageLimit ? "underline" : "none",
+                     cursor: pageNum > 19 && "default",
+                  }}
                   onClick={() => handlePage("next")}
                >
                   Next
