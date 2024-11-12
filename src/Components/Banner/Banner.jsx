@@ -1,14 +1,14 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
-import "./Banner.scss";
-import { VideoPopUpContext } from "../../Context";
 import { useHistory } from "react-router";
-import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { VideoPopUpContext } from "../../Context";
+import { category } from "../../Data/category.data";
 import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
-import { category } from "../../Data/category.data";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
-import PropagateLoader from "react-spinners/PropagateLoader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import "./Banner.scss";
 
 const Banner = () => {
    const history = useHistory();
@@ -93,6 +93,10 @@ const Banner = () => {
                         <p className="blank__screen__error--message">
                            <span>Error 504</span>
                            <span>Gateway Timeout</span>
+                           <span>
+                              The API service (TMDB) used in this application has been blocked by your internet
+                              provider
+                           </span>
                         </p>
                      </>
                   )}
