@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./RowPost.scss";
 import { useHistory } from "react-router-dom";
+import BeatLoader from "react-spinners/BeatLoader";
 import { imgUrl } from "../../Data/constant.data";
 import { useMoviesData } from "../../Hooks";
 import { fetchMovieDetails } from "../../Utils/fetchMovieDetails";
-import BeatLoader from "react-spinners/BeatLoader";
+import "./RowPost.scss";
 
 function RowPost({ category, w_sm }) {
    const history = useHistory();
@@ -25,6 +25,7 @@ function RowPost({ category, w_sm }) {
 
    const handleSeeMoreBtn = () => {
       history.push(`/category/${category.id}/1`);
+      window.scrollTo({ top: 0 });
    };
 
    if (!isLoading) {
