@@ -1,8 +1,6 @@
 .row {
    $poster_row_common_margin: 30px;
    margin-left: $poster_row_common_margin;
-   color: #fff;
-   transform: translateY(-8rem);
    .heading {
       display: flex;
       align-items: center;
@@ -73,12 +71,6 @@
             box-shadow: 0 0 30px 20px rgb(18, 18, 18) inset;
          }
       }
-   }
-}
-
-@media screen and (max-width: 1000px) {
-   .row {
-      transform: translateY(-7rem);
    }
 }
 

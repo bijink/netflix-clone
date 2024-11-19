@@ -4,7 +4,7 @@ import "./Footer.scss";
 
 function Footer({ home_page }) {
    return (
-      <div className="footer" style={home_page && { marginTop: "-5rem" }}>
+      <div className="footer">
          <div className="footer__content">
             <p className="appName">Netflix Teasers (netflix-clone)</p>
             <p className="createdText">created by</p>

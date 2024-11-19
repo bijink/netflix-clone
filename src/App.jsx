@@ -1,12 +1,12 @@
 import React from "react";
-import "./Assets/Fonts/fontAwesomeIcons";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./App.scss";
-import HomePage from "./Pages/HomePage";
-import DetailsPage from "./Pages/DetailsPage";
+import "./Assets/Fonts/fontAwesomeIcons";
 import CategoryPage from "./Pages/CategoryPage";
+import DetailsPage from "./Pages/DetailsPage";
+import HomePage from "./Pages/HomePage";
 
 const queryClient = new QueryClient();
 

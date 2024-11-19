@@ -55,7 +55,7 @@ const Category = () => {
    if (isLoading) {
       return (
          <div className="category">
-            <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />;
+            <PropagateLoader color="rgb(192, 0, 16)" loading={isLoading} aria-label="Loading Spinner" />
          </div>
       );
    }

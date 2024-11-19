@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import "./Details.scss";
-import { VideoPopUpContext } from "../../Context";
-import VideoPopUp from "../VideoPopUp/VideoPopUp";
-import { useHistory } from "react-router-dom";
-import { imgUrl } from "../../Data/constant.data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { VideoPopUpContext } from "../../Context";
+import { imgUrl } from "../../Data/constant.data";
+import VideoPopUp from "../VideoPopUp/VideoPopUp";
+import "./Details.scss";
 
 const Details = () => {
    const history = useHistory();
@@ -25,6 +25,10 @@ const Details = () => {
    window.onpopstate = function () {
       videoPopUpTrigger && history.goForward();
    };
+
+   useEffect(() => {
+      window.scrollTo({ top: 0 });
+   }, []);
 
    return (
       <div

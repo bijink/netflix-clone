@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./NavBar.scss";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { category } from "../../Data/category.data";
+import "./NavBar.scss";
 
 function NavBar({ details_page }) {
    const history = useHistory();
