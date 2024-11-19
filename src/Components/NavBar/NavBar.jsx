@@ -38,8 +38,8 @@ function NavBar({ details_page }) {
          <img
             className="nav__logo"
             onClick={() => history.push("/")}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
-            alt="Netflix Logo"
+            src="/netflix-teasers-logo.webp"
+            alt="netflix-teasers-logo"
          />
          {!details_page && (
             <div className="nav__menu">
