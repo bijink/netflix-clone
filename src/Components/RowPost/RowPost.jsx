@@ -16,7 +16,7 @@ function RowPost({ category, w_sm }) {
    const handleMovieDetails = async (movie) => {
       setLoading({ value: true, movieId: movie.id });
 
-      sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
+      sessionStorage.setItem("enteasers_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
 
       setLoading({ value: false, movieId: "" });
 

@@ -8,7 +8,7 @@ export const category = {
    // #with_networks
    origin: {
       id: "origin",
-      title: "Netflix Origins",
+      title: "Origins",
       url: "discover/tv?with_networks=213",
    },
    // #with_genres

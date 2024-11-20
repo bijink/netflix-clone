@@ -12,7 +12,7 @@ const Details = () => {
    const { videoPopUpTrigger, setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
    // #getting stored movieDetails data from sessionStorage
-   const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("netflix_temp_m_data")));
+   const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("enteasers_temp_m_data")));
 
    // #converts "YYYY-MM-DD" to "Mmm DD, YYYY"
    const date = new Date(movieDetails?.release_date ?? movieDetails?.first_air_date)

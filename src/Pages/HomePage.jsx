@@ -48,7 +48,7 @@ const HomePage = () => {
    useEffect(() => {
       if (isError) {
          setIsFetchHasWorstDelay(false);
-         sessionStorage.setItem("netflix_banner_query_data", null);
+         sessionStorage.setItem("enteasers_banner_query_data", null);
       }
    }, [isError]);
 

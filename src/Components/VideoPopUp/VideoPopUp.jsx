@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import "./VideoPopUp.scss";
-import { useContext } from "react";
-import { VideoPopUpContext } from "../../Context";
-import ReactPlayer from "react-player/youtube";
+import { faAnglesLeft, faAnglesRight, faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faArrowDown, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import React, { useContext, useState } from "react";
+import ReactPlayer from "react-player/youtube";
 import BeatLoader from "react-spinners/BeatLoader";
+import { VideoPopUpContext } from "../../Context";
+import "./VideoPopUp.scss";
 
 const VideoPopUp = ({ banner, b_movieVideos }) => {
    const { setVideoPopUpTrigger } = useContext(VideoPopUpContext);
 
-   const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("netflix_temp_m_data")));
+   const [movieDetails] = useState(JSON.parse(sessionStorage.getItem("enteasers_temp_m_data")));
 
    const [videoData] = useState(banner ? b_movieVideos : movieDetails?.video_list);
    const [videoDataLength] = useState(videoData?.length);

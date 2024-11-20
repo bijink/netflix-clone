@@ -8,7 +8,7 @@ export const useMoviesData = (url, keyID) => {
       async () => {
          if (keyID === "banner") {
             // #*to return the stored banner data(from sessionStorage) for improving performance
-            const bannerQueryData = JSON.parse(sessionStorage.getItem("netflix_banner_query_data"));
+            const bannerQueryData = JSON.parse(sessionStorage.getItem("enteasers_banner_query_data"));
             if (bannerQueryData) return bannerQueryData;
 
             let page = 1;

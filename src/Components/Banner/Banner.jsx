@@ -16,13 +16,13 @@ const Banner = ({ movies }) => {
    const [movieVideos, setMovieVideos] = useState([]);
 
    const handleMovieDetails = async (movie) => {
-      sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
+      sessionStorage.setItem("enteasers_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
       history.push("/details");
    };
 
    useEffect(() => {
       // #store movies to sessionStorage from the initial fetch
-      movies && sessionStorage.setItem("netflix_banner_query_data", JSON.stringify(movies));
+      movies && sessionStorage.setItem("enteasers_banner_query_data", JSON.stringify(movies));
       // #to show random movieDetails on banner
       const index = Math.floor(Math.random() * movies?.data?.results?.length);
       setMovieDetails(movies?.data?.results[index]);
@@ -50,7 +50,7 @@ const Banner = ({ movies }) => {
                         className="banner__main-layer__content-layer__content__buttons--play"
                         onClick={() => setVideoPopUpTrigger(true)}
                      >
-                        <FontAwesomeIcon icon="fa-solid fa-play" /> Play
+                        <FontAwesomeIcon icon="fa-solid fa-play" /> Watch
                      </button>
                      <button
                         className="banner__main-layer__content-layer__content__buttons--more-info"

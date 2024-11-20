@@ -1,6 +1,6 @@
 {
-   "name": "netflix-teasers",
-   "version": "1.1.0",
+   "name": "enteasers",
+   "version": "1.2.0",
    "private": true,
    "scripts": {
       "start": "react-scripts start",

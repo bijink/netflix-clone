@@ -38,8 +38,8 @@ function NavBar({ details_page }) {
          <img
             className="nav__logo"
             onClick={() => history.push("/")}
-            src="/netflix-teasers-logo.webp"
-            alt="netflix-teasers-logo"
+            src="/page-logo.webp"
+            alt="enteasers-app-logo"
          />
          {!details_page && (
             <div className="nav__menu">

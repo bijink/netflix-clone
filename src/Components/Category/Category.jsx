@@ -43,7 +43,7 @@ const Category = () => {
    };
 
    const handleMovieDetails = async (movie) => {
-      sessionStorage.setItem("netflix_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
+      sessionStorage.setItem("enteasers_temp_m_data", JSON.stringify(await fetchMovieDetails(movie)));
 
       history.push("/details");
    };
