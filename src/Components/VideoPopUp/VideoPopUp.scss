@@ -10,7 +10,7 @@ $secondary_color_dark: rgb(100, 100, 100);
    position: fixed;
    top: 0;
    left: 0;
-   z-index: 1;
+   z-index: 999;
    background-color: rgba(0, 0, 0, 0.9);
    .videoFrame {
       width: 90%;
